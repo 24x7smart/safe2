@@ -1,0 +1,198 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Event Information</h4>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6">
+                                  <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="Event Name" [(ngModel)]="event.name" name="name"/>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                  <mat-form-field class="example-full-width">
+                                      <mat-select name="type" class="form-control" [(ngModel)]="event.type">
+                                        <mat-option value=""> -- Select Event Type -- </mat-option>
+                                        <mat-option value="G">General Event</mat-option>
+                                        <mat-option value="E">Election</mat-option>
+                                        <mat-option value="P">Procession</mat-option>
+                                        <mat-option value="V">VVIP Visit</mat-option>
+                                      </mat-select>                                    
+                                    </mat-form-field>
+                                </div>
+                            </div>  
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <mat-form-field class="example-full-width">
+                                      <textarea matInput placeholder="Event Description" rows="3"  [(ngModel)]="event.descr" name="descr"></textarea>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                  <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Start Date" type="date" [(ngModel)]="event.start_date" name="start_date">
+                                  </mat-form-field>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="Start Time" type="time">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3">
+                                  <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="End Date" type="date" [(ngModel)]="event.end_date" name="end_date">
+                                  </mat-form-field>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="Start Time" type="time">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                  <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Reporting Date" type="date" [(ngModel)]="event.report_time" name="report_time">
+                                  </mat-form-field>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="Reporting Time" type="time">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                  <mat-form-field class="example-full-width">
+                                     <textarea matInput placeholder="Event Legend" rows="4"  [(ngModel)]="event.legend" name="legend"></textarea>
+                                   </mat-form-field>
+                                </div>
+                            </div>
+                            <button mat-raised-button type="button" class="btn btn-danger pull-right" (click)="UpdateEvent()">Save Event</button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-profile">
+                    <div class="card-avatar">
+                        <a href="javascript:void(0)">
+                            <img class="img" src="./assets/img/faces/{{event.org_user}}.png" />
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h6 class="card-category text-gray">{{user.name}}</h6>
+                        <h4 class="card-title"><span *ngIf="user.gender === 'M'">Mr.</span><span *ngIf="user.gender === 'F'">Ms.</span> {{user.officer}}</h4>
+                        <div class="row">
+                          <div class="col-md-12">
+                            <mat-form-field class="example-full-width">
+                              <mat-select name="sourcing" class="form-control" [(ngModel)]="event.sourcing">
+                                <mat-option value="0">-- Select Sourcing Officer --</mat-option>
+                                <mat-option value="{{scr.id}}" *ngFor="let scr of user.sourcing">{{scr.name}}</mat-option>
+                              </mat-select>                                    
+                            </mat-form-field>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                  <div class="card-header card-header-tabs card-header-primary">
+                      <div class="nav-tabs-navigation">
+                          <div class="nav-tabs-wrapper">
+                              <ul class="nav nav-tabs" data-tabs="tabs">
+                                  <li class="nav-item">
+                                      <a mat-button class="nav-link active" href="#formats" data-toggle="tab">
+                                          <i class="material-icons">bug_report</i> Formats
+                                          <div class="ripple-container"></div>
+                                      </a>
+                                  </li>
+                                  <li class="nav-item">
+                                      <a mat-button class="nav-link" href="#reports" data-toggle="tab">
+                                          <i class="material-icons">code</i> Reports
+                                          <div class="ripple-container"></div>
+                                      </a>
+                                  </li>
+                                  <li class="nav-item">
+                                      <a mat-button class="nav-link" href="#messages" data-toggle="tab">
+                                          <i class="material-icons">cloud</i> Messages
+                                          <div class="ripple-container"></div>
+                                      </a>
+                                  </li>
+                                  <li class="nav-item">
+                                    <a mat-button class="nav-link" href="#alloc" data-toggle="tab">
+                                        <i class="material-icons">cloud</i> Allocation
+                                        <div class="ripple-container"></div>
+                                    </a>
+                                </li>
+                            </ul>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="card-body">
+                      <div class="tab-content">
+                          <div class="tab-pane active" id="formats">
+                            <form>
+                              <div class="col-md-12">
+                                <mat-label>Nominal Roll</mat-label>
+                                <mat-form-field class="example-full-width">
+                                  <mat-select name="event_type" class="form-control">
+                                    <mat-option value=""> -- Select Format -- </mat-option>
+                                  </mat-select>                                    
+                                </mat-form-field>
+                              </div>
+                              <div class="col-md-12">
+                                <mat-label>Duty Ticket Format</mat-label>
+                                <mat-form-field class="example-full-width">
+                                    <mat-select name="event_type" class="form-control">
+                                      <mat-option value=""> -- Select Format -- </mat-option>
+                                    </mat-select>                                    
+                                </mat-form-field>
+                              </div>
+                            </form>
+                          </div>
+                          <div class="tab-pane" id="messages">
+                            <form>
+                              <div class="col-md-12">
+                                <mat-form-field class="example-full-width">
+                                  <input matInput placeholder="Sender Number" type="number">
+                                </mat-form-field>
+                              </div>
+                              <div class="col-md-12">
+                                  <mat-form-field class="example-full-width">
+                                    <textarea matInput placeholder="Message Format" rows="4"></textarea>
+                                  </mat-form-field>
+                              </div>
+                            </form>
+                          </div>
+                          <div class="tab-pane" id="reports">
+<!--                            
+                            <form>
+                              <div class="col-md-12">
+                                <mat-form-field class="example-full-width">
+                                  <mat-checkbox>Show Zeroes as Empty</mat-checkbox>
+                                </mat-form-field>
+                              </div>
+                              <div class="col-md-12">
+                                  <mat-form-field class="example-full-width">
+                                    <mat-checkbox>Manpower Shortage</mat-checkbox>
+                                  </mat-form-field>
+                              </div>
+                            </form>
+-->
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+  

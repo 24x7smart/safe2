@@ -1,0 +1,84 @@
+.main-container {
+    display: flex;
+    flex-direction: row;
+    height: calc(100vh - 72px);
+    overflow: hidden;
+    width: 100%;
+    position: relative; /* Ensure positioned children are relative to this container */
+    top: 72px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+.toolbar-select {
+    margin-top: 10px;
+}
+
+table.ranks td {
+    text-align: right;
+  }
+
+.segment {
+    border: 1px dashed;
+    height: calc(100vh - 72px);
+}
+/*---------------------------*/
+/* Define the CSS class for the border */
+.mat-list-option-border {
+  border: 1px solid #ccc; /* Change the color and style as needed */
+  border-radius: 4px; /* Optional: Add rounded corners */
+  margin-bottom: 8px; /* Optional: Add space between items */
+  padding: 8px; /* Optional: Add padding inside each item */
+}
+
+/* Remove default margin and padding from the list */
+.mat-selection-list {
+  padding: 0;
+  margin: 0;
+}
+
+/*---------------------------*/
+.example-accordion {
+  display: block;
+  max-width: 500px;
+}
+
+.example-accordion-item {
+  display: block;
+  border: solid 1px #ccc;
+}
+
+.example-accordion-item + .example-accordion-item {
+  border-top: none;
+}
+
+.example-accordion-item-header {
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+}
+
+.example-accordion-item-description {
+  font-size: 0.85em;
+  color: #999;
+}
+
+.example-accordion-item-header,
+.example-accordion-item-body {
+  padding: 16px;
+}
+
+.example-accordion-item-header:hover {
+  cursor: pointer;
+  background-color: #eee;
+}
+
+.example-accordion-item:first-child {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.example-accordion-item:last-child {
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}

@@ -1,0 +1,26 @@
+<div class="table-responsive">
+    <table class="table table-hover" >
+        <thead>
+            <th>Sl.</th>
+            <th>Unit</th>
+            <th>Nominal Roll</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let unit of units; let i = index">
+                <td>{{i+1}}</td>
+                <td><i *ngIf="unit.ishome" class="material-icons">home</i> {{unit.name}}</td>
+                <td>
+                    <i class="material-icons" *ngIf="!unit.recieved">close</i>
+                    <i class="material-icons" *ngIf="unit.recieved">done</i>
+
+                    <mat-slider *ngIf="unit.recieved" min="0" max="100" step="1" value="{{unit.percent}}" [disabled]="true">
+                    </mat-slider>
+                    <span *ngIf="unit.recieved">{{unit.percent}}%</span>
+
+                    <button *ngIf="!unit.recieved" class="btn-primary" type="button" (click)="OnImportClick(unit.name)"><i class="material-icons">get_app</i> Import</button>
+                    <button *ngIf="!unit.recieved" class="btn-primary pull-right" type="button"><i class="material-icons">mail_outline</i></button>
+                </td>
+            </tr>
+            </tbody>
+    </table>
+</div>                              

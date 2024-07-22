@@ -1,0 +1,43 @@
+<h2 mat-dialog-title>
+  <span *ngIf="lsector.id === 0">Add Sector</span>
+  <span *ngIf="lsector.id !== 0">Edit Sector</span>
+</h2>
+<mat-dialog-content>
+  <div class="row">
+    <div class="col-sm-6">
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="Zone" value="{{ lsector?.zone }}" disabled>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="Sector Type" value="{{ lsector?.type }}" disabled>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="Code" [(ngModel)]="sector.code">
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="Name" [(ngModel)]="sector.name">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      Requirement
+        <table width="100%">
+          <tr *ngFor="let rnk of sector.ranks">
+            <td width="50%">{{scaleName(rnk.r)}}</td>
+            <td><input placeholder="Name" [(ngModel)]="rnk.c"/></td>
+          </tr>
+        </table>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onCancelClick()">Cancel</button>
+  <button mat-button color="primary" (click)="onOkClick()">Ok</button>
+</mat-dialog-actions>

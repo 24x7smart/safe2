@@ -1,0 +1,74 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h3 class="card-title ">
+                            Components
+                            <button type="button" class="btn btn-warning pull-right" (click)="addRow()">Add Row</button>
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <th>
+                                        Sl.
+                                    </th>
+                                    <th>
+                                        Name
+                                    </th>
+                                    <th>
+                                        Code
+                                    </th>
+                                    <th *ngFor="let rank of scale;">
+                                        {{rank.code}}
+                                    </th>
+                                    <th>
+                                        Map Icon
+                                    </th>
+                                    <th>
+                                        Map Type
+                                    </th>
+                                    <th>...</th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let comp of components; let i = index">
+                                        <td>
+                                            {{i + 1}}
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" [(ngModel)]="comp.name"/>                                        
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" [(ngModel)]="comp.code"/>                                        
+                                        </td>
+                                        <td *ngFor="let rank of comp.ranks;">
+                                            <input type="text" class="form-control" [(ngModel)]="rank.c"/>                                        
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" [(ngModel)]="comp.icon"/>                                        
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" [(ngModel)]="comp.map_type"/>                                        
+                                        </td>
+                                        <td>
+                                            <button (click)="deleteRow(i)">Delete</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-footer card-footer-danger">
+                        &nbsp;
+                        <button mat-raised-button type="submit" class="btn btn-success pull-left" (click)="SaveComponents()">Save All</button>
+                        <!-- <p class="card-category"> Here is a subtitle for this table</p> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  

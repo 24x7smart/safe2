@@ -1,0 +1,42 @@
+<div class="main-container col-dm-12">
+    <div class="segment col-sm-3 bg-default">
+        Zones
+        <cdk-accordion class="example-accordion">
+              <cdk-accordion-item
+                *ngFor="let zone of scheme?.zones; track zone; let i = index"
+                #accordionItem="cdkAccordionItem"
+                class="example-accordion-item"
+                role="button"
+                tabindex="0"
+                [attr.id]="'accordion-header-' + index"
+                [attr.aria-expanded]="accordionItem.expanded"
+                [attr.aria-controls]="'accordion-body-' + index">
+                <div class="example-accordion-item-header" (click)="accordionItem.toggle()">
+                  {{zone.zcode}}-{{zone.zname}}
+                  <span class="material-icons">
+                    {{ accordionItem.expanded ? 'close' : 'keyboard_double_arrow_down' }}
+                  </span>
+                </div>
+                <div
+                  class="example-accordion-item-body"
+                  role="region"
+                  [style.display]="accordionItem.expanded ? '' : 'none'"
+                  [attr.id]="'accordion-body-' + index"
+                  [attr.aria-labelledby]="'accordion-header-' + index">
+                    <mat-selection-list #shoes [multiple]="false">
+                        <mat-list-option *ngFor="let sector of zone.sectors" [value]="sector" (click)="onSectorClick(sector)" class="mat-list-option-border">
+                            {{sector.code}} - {{sector.name}}
+                        </mat-list-option>
+                    </mat-selection-list>
+
+                </div>
+              </cdk-accordion-item>
+        </cdk-accordion>
+    </div>
+    <div class="segment col-sm-5 bg-default" *ngIf="selectedSector">
+        <app-sector-alloc [sector]="selectedSector"></app-sector-alloc>
+    </div>
+    <div class="segment col-sm-4 bg-default" *ngIf="selectedSector">
+        <app-search-pers></app-search-pers>
+    </div>    
+</div>
