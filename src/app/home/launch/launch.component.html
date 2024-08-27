@@ -4,124 +4,39 @@
             <div class="col-md-2">
                 &nbsp;
             </div>
-            <div class="col-md-8">
+            <div class="col-md-2">
                 <div class="card" style="margin-top: 150px;">
                     <div class="card-header card-header-danger">
-                        <h4 class="card-title ">Organizing Events <img class="pull-right" width="30px" src="./assets/img/safe.png"/></h4>
+                        <h4 class="card-title ">Fire Monitoring</h4>
                     </div>
                     <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead class=" text-primary">
-                                    <th>
-                                        Sl.
-                                    </th>
-                                    <th>
-                                        Event
-                                    </th>
-                                    <th>
-                                        Type
-                                    </th>
-                                    <th>
-                                        Start
-                                    </th>
-                                    <th>
-                                        End
-                                    </th>
-                                    <th>
-                                        Status
-                                    </th>
-                                    <th>
-                                        ...
-                                    </th>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let event of events; index as i">
-                                        <td>
-                                            {{i+1}}
-                                        </td>
-                                        <td>
-                                            {{event.name}}
-                                        </td>
-                                        <td>
-                                            {{TypeDesc(event.type)}}
-                                        </td>
-                                        <td>
-                                            {{event.start_date}}
-                                        </td>
-                                        <td>
-                                            {{event.end_date}}
-                                        </td>
-                                        <td>
-                                            {{StatusDesc(event.status)}}
-                                        </td>
-                                        <td class="text-primary">
-                                            <button type="button" class="btn-primary" (click)="ManageEvent(event.id)">Manage</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
                     </div>
                 </div>
-
-                <div class="card">
+            </div>
+            <div class="col-md-2">
+                <div class="card" style="margin-top: 150px;">
                     <div class="card-header card-header-danger">
-                        <h4 class="card-title ">Sourcing Requests</h4>
+                        <h4 class="card-title ">Fire Response</h4>
                     </div>
                     <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead class=" text-primary">
-                                    <th>
-                                        Sl.
-                                    </th>
-                                    <th>
-                                        Event
-                                    </th>
-                                    <th>
-                                        Type
-                                    </th>
-                                    <th>
-                                        Reporting Time
-                                    </th>
-                                    <th>
-                                        End Date
-                                    </th>
-                                    <th>
-                                        Organizer
-                                    </th>
-                                    <th>
-                                        ...
-                                    </th>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let event of events; index as i">
-                                        <td>
-                                            {{i+1}}
-                                        </td>
-                                        <td>
-                                            {{event.name}}
-                                        </td>
-                                        <td>
-                                            {{TypeDesc(event.type)}}
-                                        </td>
-                                        <td>
-                                            {{event.report_time}}
-                                        </td>
-                                        <td>
-                                            {{event.end_date}}
-                                        </td>
-                                        <td>
-                                            {{UserName(event.org_user)}}
-                                        </td>
-                                        <td class="text-primary">
-                                            <button type="button" class="btn-primary" (click)="SourceEvent(event.id)">Source</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="card" style="margin-top: 150px;">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">NOC Workbench</h4>
+                    </div>
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="card" style="margin-top: 150px;">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Administration</h4>
+                    </div>
+                    <div class="card-body">
                     </div>
                 </div>
             </div>

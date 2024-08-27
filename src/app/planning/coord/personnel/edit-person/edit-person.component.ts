@@ -44,7 +44,7 @@ export class EditPersonComponent implements OnInit {
   }
 
   onOkClick(): void {
-    const unitId = this.searchForm.get('unit')?.value;
+    const unitId = 0; //this.searchForm.get('unit')?.value;
     const selectedUnit = this.units.find(unit => unit.id === unitId);
     
     console.log(this.person);
