@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UnitSourcingComponent } from './unit-sourcing.component';
+import { AlertChatComponent } from './alert-chat.component';
 
-describe('UnitSourcingComponent', () => {
-  let component: UnitSourcingComponent;
-  let fixture: ComponentFixture<UnitSourcingComponent>;
+describe('AlertChatComponent', () => {
+  let component: AlertChatComponent;
+  let fixture: ComponentFixture<AlertChatComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UnitSourcingComponent ]
+      declarations: [ AlertChatComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(UnitSourcingComponent);
+    fixture = TestBed.createComponent(AlertChatComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

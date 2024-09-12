@@ -1,0 +1,20 @@
+<mat-tab-group [(selectedIndex)]="selectedTabIndex" style="margin-top: 60px;">
+    <mat-tab label="Main Building"></mat-tab>
+    <mat-tab label="Annexe"></mat-tab>
+    <mat-tab label="Parking"></mat-tab>
+</mat-tab-group>  
+  
+  <!-- Shared Content for All Tabs -->
+<div *ngIf="selectedTabIndex === 0 || selectedTabIndex === 1 || selectedTabIndex === 2" class="shared-content">
+    <div class="row" style="height: calc(100vh - 110px);">
+        <div class="block col-md-2 bg-default" style="border-right: 3px darkgray ridge;">
+            <app-block-details></app-block-details>
+        </div>
+        <div class="floors col-md-2 bg-default">
+            <app-floors (itemClicked)="floorSelected($event)"></app-floors>
+        </div>
+        <div class="floor col-md-8 bg-default">
+            <app-floor-details #floorDetails></app-floor-details>
+        </div>
+    </div>
+</div>

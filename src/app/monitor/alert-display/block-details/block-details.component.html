@@ -1,0 +1,70 @@
+<mat-card class="property-card" [ngClass]="{'bg-danger': block.status === 'Unconfirmed'}">
+    <mat-card-header>
+        <mat-card-title [ngClass]="{ 'flashing-text': block.status === 'Unconfirmed' }">
+            {{ block.status }}
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-actions>
+        <button mat-button color="primary" class="col-md-6">
+            <mat-icon title="Confirm">done</mat-icon> Confirm
+        </button>
+        <button mat-button color="primary" class="col-md-6">
+            <mat-icon title="False Alarm">cancel</mat-icon> False
+        </button>
+    </mat-card-actions>
+</mat-card>
+
+<mat-card class="property-card">
+    <mat-card-header>
+        <mat-card-title>{{ block.property.name }}</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+        <p>{{ block.property.address }}</p>
+        <p>
+            <a href="#" target="_directions"><mat-icon>house</mat-icon></a>
+            {{ block.property.fire_station }}&nbsp; 
+            <a href="https://www.google.com/maps/dir/?api=1&origin={{block.property.station_lat}},{{block.property.station_lng}}&destination={{block.property.prop_lat}},{{block.property.prop_lng}}&mode=driving" target="_directions"><mat-icon>route</mat-icon></a>
+        </p>
+        <div><strong>NOC:</strong> <a href='#'>{{ block.property.NOC }}</a></div>
+
+        <div *ngIf="block.property.active" class="active-status">
+             Active till {{ block.property.NOCdate }}</div>
+        <div *ngIf="!block.property.active" class="inactive-status">
+            Expired on {{ block.property.NOCdate }}</div>
+    </mat-card-content>
+</mat-card>
+
+<mat-card class="property-card">
+    <p>
+        <span class="contact" *ngFor="let contact of block.contacts">{{contact.role}}: {{contact.name}}(<a
+                href="tel:+91{{contact.mobile}}">{{contact.mobile}}</a>)<br /></span>
+    </p>
+</mat-card>
+
+<mat-card class="property-card">
+    <mat-card-header>
+        <mat-card-title>{{ block.block.name }}</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+        <div class="block-details">
+            <div class="property-name">Height</div>
+            <div class="property-value">{{ block.block.height }} m</div>
+        
+            <div class="property-name">Occupants</div>
+            <div class="property-value">{{ block.block.total_occu }} pers</div>
+        
+            <div class="property-name">Occupancy</div>
+            <div class="property-value">{{ block.block.occupancy }}</div>
+        
+            <div class="property-name">Sub Type</div>
+            <div class="property-value">{{ block.block.sub_occu }}</div>            
+        </div>        
+    </mat-card-content>
+
+    <mat-card-actions>
+        <button mat-button color="primary" class="col-md-6">Site Plan</button>
+        <button mat-button color="primary" class="col-md-6">Elevation</button>
+    </mat-card-actions>
+</mat-card>

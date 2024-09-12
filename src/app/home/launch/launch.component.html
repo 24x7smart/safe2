@@ -4,39 +4,22 @@
             <div class="col-md-2">
                 &nbsp;
             </div>
-            <div class="col-md-2">
+            <div class="col-md-2" *ngFor="let categ of stats; index as j">
                 <div class="card" style="margin-top: 150px;">
                     <div class="card-header card-header-danger">
-                        <h4 class="card-title ">Fire Monitoring</h4>
+                        <h4 class="card-title ">{{categ.title}}</h4>
                     </div>
                     <div class="card-body">
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="card" style="margin-top: 150px;">
-                    <div class="card-header card-header-danger">
-                        <h4 class="card-title ">Fire Response</h4>
-                    </div>
-                    <div class="card-body">
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="card" style="margin-top: 150px;">
-                    <div class="card-header card-header-danger">
-                        <h4 class="card-title ">NOC Workbench</h4>
-                    </div>
-                    <div class="card-body">
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="card" style="margin-top: 150px;">
-                    <div class="card-header card-header-danger">
-                        <h4 class="card-title ">Administration</h4>
-                    </div>
-                    <div class="card-body">
+                        <p>{{categ.desc}}</p>
+                        <div class="row m-1" *ngFor="let stat of categ.stats;index as i">
+                            <div class="col-md-3 bg-{{stat.color}} text-white">
+                                <h4>{{stat.count}}</h4>
+                            </div> 
+                            <div class="col-md-9 border border-{{stat.color}}">
+                                <h4>{{stat.name}}</h4>
+                            </div> 
+                        </div>
+                        <button class="btn btn-success" (click)="Goto(categ.code)">Go</button>
                     </div>
                 </div>
             </div>

@@ -3,11 +3,7 @@
         <div class="logo-img">
             <img src="/assets/img/angular2-logo-red.png"/>
         </div>
-        svoja
     </a>
-    <button class="toggle-button pull-right" (click)="this.sidenavService.toggleSidenav()">
-        X
-    </button>
 </div>
 <div class="sidebar-wrapper">
   <div *ngIf="isMobileMenu()">
@@ -59,17 +55,17 @@
   </div>
   
     <ul class="nav">
-        <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
-            <a data-toggle="collapse" class="nav-link" href="#{{menuItem.title}}" aria-expanded="true">
-                <i class="material-icons">{{menuItem.icon}}</i>
-                <p>{{menuItem.title}} <b class="caret"></b></p>
+        <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item" >
+            <a data-toggle="collapse" class="nav-link" href="#{{menuItem.title}}" aria-expanded="true" title="{{menuItem.title}}" style="border: 1px black solid">
+                <i class="material-icons" >{{menuItem.icon}}</i>
+                <p><b class="caret"></b></p>
             </a>
             <div class="collapse" id="{{menuItem.title}}">
                 <ul class="nav">
                     <li routerLinkActive="active" *ngFor="let subItem of menuItem.children" class="{{subItem.class}} nav-item sub-item">
-                        <a class="nav-link" [routerLink]="[subItem.path]">
-                            <i class="material-icons">{{subItem.icon}}</i>
-                            <span class="sidebar-normal">{{subItem.title}}</span>
+                        <a class="nav-link" [routerLink]="[subItem.path]" title="{{subItem.title}}" style="border: 1px white solid">
+                            <i class="material-icons" >{{subItem.icon}}</i>
+                            <!-- span class="sidebar-normal">{{subItem.title}}</span -->
                         </a>
                     </li>
                 </ul>

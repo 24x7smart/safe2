@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AttendanceComponent } from './attendance/attendance.component';
 import { MonitorComponent } from './monitor/monitor.component';
+import { AlertDisplayComponent } from './alert-display/alert-display.component';
 
 const routes: Routes = [
-  {path: 'attend', component: AttendanceComponent},
   {path: 'monitor', component: MonitorComponent},
+  {path: 'alert', component: AlertDisplayComponent},
   {path: '', component: MonitorComponent},
 ];
 

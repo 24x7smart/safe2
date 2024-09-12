@@ -1,0 +1,23 @@
+<div class="chat-container">
+    <!-- Message List -->
+    <mat-card class="message-list">
+        <div *ngFor="let message of messages" style="border: 1px lightgray dashed">
+            <div>
+                <span class="sender" style="font-size: 14px;">{{ message.sender }}</span>
+                <span class="timestamp" style="float: right; font-size: 14px;">{{ message.timestamp | date:'shortTime'
+                    }}</span>
+                <div class="message-body" style="font-size: 14px;">{{ message.text }}</div>
+            </div>
+        </div>
+    </mat-card>
+
+    <!-- Send Message Form -->
+    <mat-card class="message-form">
+        <form (ngSubmit)="sendMessage()" class="message-form">
+            <textarea [(ngModel)]="newMessage" name="message" placeholder="Type a message" required></textarea>
+            <button mat-icon-button color="primary" type="submit">
+                <mat-icon>send</mat-icon>
+            </button>
+        </form>
+    </mat-card>
+</div>

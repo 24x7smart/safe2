@@ -1,0 +1,23 @@
+<div class="container">
+    <!-- Group 1: Fire Alarms -->
+    <div *ngFor="let group of stats">
+        <div class="group-header">
+            <mat-icon class="group-icon">{{group.icon}}</mat-icon>
+            <h4>{{group.label}}</h4>
+        </div>
+        <mat-grid-list cols="4" rowHeight="80px" gutterSize="8px">
+            <mat-grid-tile *ngFor="let item of group.items" class="card">
+                <mat-card>
+                    <mat-card-header>
+                        <mat-icon>{{ item.icon }}</mat-icon>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div class="number">{{ item.value }}</div>
+                        <div class="label">{{ item.label }}</div>
+                    </mat-card-content>
+                </mat-card>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+  </div>
+  

@@ -1,0 +1,44 @@
+/* Style for each list item */
+.list-item {
+    padding: 10px 20px;
+    border: 1px solid #ccc; /* Add border to each item */
+    background-color: #f9f9f9; /* Background color for each item */
+    margin-bottom: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  /* Hover effect for list items */
+  .list-item:hover {
+    background-color: #e0e0e0; /* Change background on hover */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Add shadow on hover */
+  }
+  /* Style for the selected item */
+  .selected-item {
+    background-color: #d0e8ff !important; /* Highlighted background for selected item */
+    border-color: #1976d2; /* Border color for selected item */
+    color: #1976d2; /* Text color for selected item */
+  }
+  /* Style for mat-list to position it at the bottom */
+.bottom-aligned-list {
+    position: absolute;
+    bottom: 0; /* Align the list to the bottom of the container */
+    width: 90%; /* Make the list take up the full width of the container */
+    margin-left: 5px; 
+    margin-bottom: 0px;/* Remove any default margins */
+  }
+
+  .custom-hr {
+    border: 0; /* Remove default border */
+    border-top: 5px solid darkgray; /* Set thickness and color */
+  }
+
+  .small-icon {
+    font-size: 16px; /* Adjust size as needed */
+    color: lightgray;
+  }
+
+  .active-icon {
+    font-size: 16px; /* Adjust size as needed */
+    color: orangered;
+  }

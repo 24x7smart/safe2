@@ -22,10 +22,6 @@ const routes: Routes =[
   {
       path: 'home',
       loadChildren: () => import('app/home/home.module').then(m => m.HomeModule)
-  },
-  {
-      path: 'source',
-      loadChildren: () => import('app/sourcing/sourcing.module').then(m => m.SourcingModule)
   }
 ];
 

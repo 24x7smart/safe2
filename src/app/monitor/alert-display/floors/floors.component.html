@@ -1,0 +1,17 @@
+<mat-list class="bottom-aligned-list">
+    <mat-list-item *ngFor="let item of otherItems; let i = index"
+        [ngClass]="{'selected-item': selectedItemIndex === item.id}" (click)="onItemClick(item.id)" class="list-item">
+            <mat-icon [ngClass]="getIconClass(item.alert)" title="Alarm">notifications_active</mat-icon>
+            <mat-icon [ngClass]="getIconClass(item.faults)" title="Fault">warning</mat-icon>
+            <mat-icon [ngClass]="getIconClass(item.sprinkler)" title="Sprinkler" style="margin-right: 20px;">shower</mat-icon>
+            {{ item.name }}
+    </mat-list-item>
+    <hr class="custom-hr">
+    <mat-list-item *ngFor="let item of basementItems; let i = index"
+        [ngClass]="{'selected-item': selectedItemIndex === item.id}" (click)="onItemClick(item.id)" class="list-item">
+        <mat-icon [ngClass]="getIconClass(item.alert)" title="Alarm">notifications_active</mat-icon>
+        <mat-icon [ngClass]="getIconClass(item.faults)" title="Fault">warning</mat-icon>
+        <mat-icon [ngClass]="getIconClass(item.sprinkler)" title="Sprinkler" style="margin-right: 20px;">shower</mat-icon>
+        {{ item.name }}
+    </mat-list-item>
+</mat-list>

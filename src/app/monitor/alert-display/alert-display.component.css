@@ -1,0 +1,36 @@
+/* Container for the tabs */
+mat-tab-group {
+    display: block;
+  }
+  
+  /* Style for each individual tab (the tab leaf) */
+  .mat-tab-label {
+    background-color: #f5f5f5; /* Background for each tab */
+    border: 1px solid #ccc; /* Border for each tab */
+    border-radius: 8px 8px 0 0; /* Rounded top corners */
+    margin-right: 4px; /* Space between tabs */
+    padding: 8px 16px; /* Padding inside each tab */
+    text-transform: none; /* Disable uppercase text transform */
+  }
+  
+  /* Remove the last tab's right margin */
+  .mat-tab-label:last-of-type {
+    margin-right: 0;
+  }
+  
+  /* Active tab styling */
+  .mat-tab-label-active {
+    background-color: #e0e0e0; /* Different background for the active tab */
+    border-bottom: none; /* Remove bottom border so it connects with the content */
+    border-radius: 8px 8px 0 0; /* Keep rounded corners for the active tab */
+  }
+  
+  /* Style the tab content with border and rounded corners */
+  .mat-tab-body-wrapper {
+    border: 1px solid #ccc;
+    border-top: none; /* Avoid double border between active tab and content */
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    padding: 16px;
+  }
+  

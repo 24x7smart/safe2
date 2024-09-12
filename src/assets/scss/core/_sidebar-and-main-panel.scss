@@ -10,7 +10,7 @@
     bottom: 0;
     left: 0;
     z-index: 2;
-    width: 260px;
+    width: 100px; // SATAK
     background: $white-color;
     @include shadow-big();
 
@@ -46,7 +46,7 @@
         position: relative;
         height: calc(100vh - 75px);
         overflow: auto;
-        width: 260px;
+        width: 100px; // SATAK
         z-index: 4;
 
         padding-bottom: 30px;
@@ -126,8 +126,8 @@
 
         .caret{
             margin-top: 13px;
-            position: absolute;
-            right: 6px;
+/*            position: absolute;
+            right: 6px; */
         }
 
         li{
@@ -194,7 +194,7 @@
         i{
             font-size: 24px;
             float: left;
-            margin-right: 15px;
+            margin-right: 1px; // SATAK 15-> 1
             line-height: 30px;
             width: 30px;
             text-align: center;
@@ -371,7 +371,8 @@
 .main-panel{
     position: relative;
     float: right;
-    width: $sidebar-width;
+/*    width: $sidebar-width;*/
+    width: calc(100% - 100px);
     @include transition (0.33s, cubic-bezier(0.685, 0.0473, 0.346, 1));
 
      .main-content{

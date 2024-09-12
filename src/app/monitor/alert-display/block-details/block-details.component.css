@@ -1,0 +1,64 @@
+.property-card {
+    width: 100%;
+    margin-left: 10px; /* Optional: Adjust as needed */
+    padding: 8px;
+    margin-bottom: 10px;
+  }
+  
+  mat-card-title {
+    font-size: 1.1em; /* Adjust title size */
+    text-align: center;
+  }
+  
+  .full-width-button {
+    width: 100%; /* Makes the button take up the full width */
+  }
+  
+  .active-status {
+    background-color: green;
+    color: white;
+  }
+  
+  .inactive-status {
+    background-color: darkred;
+    color: white;
+  }
+  
+  /* Contacts Table */
+  .table-container {
+    max-height: 300px; /* Adjust as needed */
+    overflow-y: auto;
+    overflow-x: auto;
+    margin-left: 10px; /* Optional: Adjust as needed */
+  }
+  
+  .contact {
+    font-size: 12px;
+  }
+
+  .block-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 equal columns */
+    gap: 1px; /* Space between rows */
+  }
+  
+  .property-name {
+    background-color: lightgray;
+    padding: 2px;
+    font-weight: bold;
+  }
+  
+  .property-value {
+    background-color: white;
+    padding: 8px;
+  }
+
+  .flashing-text {
+    animation: flash 1s infinite;
+  }
+  
+  @keyframes flash {
+    0% { opacity: 1; }
+    50% { opacity: 0.25; }
+    100% { opacity: 1; }
+  }

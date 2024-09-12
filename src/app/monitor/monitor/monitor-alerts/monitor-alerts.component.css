@@ -1,0 +1,111 @@
+.container {
+    padding: 8px;
+  }
+  
+  mat-card {
+    width: 100%;
+    height: 200px; /* Fixed height */
+    margin-bottom: 12px;
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .custom-card {
+    padding: 8px; /* Reduced padding */
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Full height within the fixed height */
+  }
+  
+  .new-disposition {
+    background-color: #ffeb3b; /* Yellow background for new disposition */
+  }
+  
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px; /* Reduced margin */
+    font-size: 12px;
+    padding: 0px;
+    background-color: inherit;
+  }
+  
+  .status {
+    font-weight: bold;
+  }
+  
+  .occupancy {
+    font-weight: normal;
+    text-align: center;
+  }
+  
+  .card-title {
+    font-size: 16px; /* Smaller font size */
+    font-weight: bold;
+    text-align: center;
+    margin: 4px 0; /* Reduced margin */
+    flex-grow: 1; /* Flex-grow to fill available space */
+  }
+  
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    padding: 0px;
+    background-color: inherit;
+  }
+  
+  .time-label {
+    font-weight: inherit;
+  }
+  
+  .time {
+    font-weight: bold;
+  }
+  
+  .card-actions {
+    display: flex;
+    /*justify-content: space-between;*/
+    margin-top: auto; /* Push buttons to the bottom of the card */
+    text-align: right;
+  }
+  
+  button {
+    font-size: 12px; /* Smaller font size */
+    padding: 4px 8px; /* Reduced padding */
+    min-width: 32px; /* Minimum width */
+    height: 32px; /* Fixed height */
+    border-radius: 10%; /* Circular buttons if using mat-mini-fab */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Light 3D shadow */
+    border: 1px solid rgba(0, 0, 0, 0.1); /* Lighter border */
+    margin-right: 1px;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .confirm-button {
+    background-color: #4caf50; /* Green background for confirm */
+    color: white;
+  }
+  
+  .view-button {
+    background-color: #e0e0e0; /* Default background for view */
+    color: black;
+  }
+  
+  .response-button {
+    background-color: #e0e0e0; /* Default background for response */
+    color: black;
+  }
+  
+  .ack-button {
+    background-color: #e6990b; /* Default background for response */
+    color: black;
+  }
+
+  mat-icon {
+    font-size: 16px; /* Adjust this value to make the icon smaller */
+  }

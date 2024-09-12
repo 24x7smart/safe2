@@ -40,3 +40,8 @@
       height: fit-content;
     }
 }
+
+.sidebar .nav .caret {
+  margin-top: 13px;
+  position: relative;
+}

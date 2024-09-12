@@ -1,0 +1,245 @@
+.building-image {
+    width: 100%; /* Adjust as needed */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 8px; /* Optional: Add rounded corners */
+  }
+  
+.row1 {
+    height: calc(2 * (100vh - 110px) / 3);
+}
+
+.row2 {
+    height: calc((100vh - 110px) / 3);
+}
+
+.image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    background-color: blue;
+    border-radius: 50%;
+    position: absolute;
+    animation: none; /* Default no animation */
+    transition: transform 0.2s ease, background-color 0.2s ease;
+  }
+  
+  .activated {
+    background-color: yellow; /* Brighter red when activated */
+    animation: pulse 1.5s infinite ease-in-out; /* Animation for pulse effect */
+  }
+  
+  /* Define the pulse keyframes */
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+      box-shadow: 0 0 0 0 rgba(255, 51, 51, 0.7);
+    }
+    50% {
+      transform: scale(1.5);
+      box-shadow: 0 0 10px 5px rgba(255, 51, 51, 0.5);
+    }
+    100% {
+      transform: scale(1);
+      box-shadow: 0 0 0 0 rgba(255, 51, 51, 0.7);
+    }
+  }
+
+  /* Detector Table */
+table {
+    width: 100%;
+    margin: 0; /* No margin around the table */
+    border-collapse: collapse; /* Collapses table borders to minimize space */
+  }
+  
+  th.mat-header-cell, td.mat-cell {
+    padding: 4px 8px; /* Reduced padding inside cells */
+    text-align: center;
+  }
+  
+  .mat-header-row, .mat-row {
+    margin: 0; /* No margin for rows */
+    padding: 0; /* Reduced padding for rows */
+  }
+  
+  .mat-header-cell {
+    font-weight: bold;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12); /* Optional: border between header and rows */
+  }
+  
+  td.mat-cell {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12); /* Optional: border between rows */
+  }
+  
+  .alert-active {
+    color: red;
+  }
+
+  .fault {
+    color: lightcoral;
+  }
+  
+  .alert-inactive {
+    color: lightgray;
+  }
+  
+  .table-container {
+    height: calc(2 * (100vh - 110px) / 3); /* Set a fixed height for the container */
+    overflow: auto; /* Enable vertical scrolling if content exceeds the height */
+  }
+
+/* Tank container to hold both the tank body and the dome */
+.tank-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+  margin-left: 10px
+}
+
+/* The rounded top (dome) of the tank */
+.tank-top {
+  width: 100px;
+  height: 20px;
+  background-color: gray;
+  border-radius: 0% 0% 0 0;
+  color: black;
+  text-align: center;
+}
+
+/* Main tank body */
+.outer-div {
+  height: 70px;
+  width: 100px;
+  background-color: lightgray;
+  border: 2px solid black;
+  position: relative;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+}
+
+/* Filling part inside the tank */
+.fill-70 {
+  width: 100%;
+  background-color: blue;
+  position: absolute;
+  bottom: 0;
+  transition: height 0.3s ease;
+}
+
+/* Tank text styling */
+.tank-text {
+  position: absolute;
+  bottom: 5px; /* Adjust as needed */
+  width: 100%;
+  text-align: center;
+  color: white; /* Text color to contrast the fill */
+  font-weight: bold;
+  z-index: 1;
+  pointer-events: none; /* Text shouldn't affect interactions */
+}
+
+/* Underground text styling */
+.tank-label {
+  font-size: 12px;
+}
+
+/* Capacity text styling */
+.tank-capacity {
+  font-size: 14px;
+}
+
+.pump-div {
+  height: 50px;
+  width: 100px;
+  background-color: lightgray;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.pump-bottom {
+  width: 100px;
+  height: 20px;
+  background-color: gray;
+  border-radius: 0% 0% 0 0;
+  color: black;
+  text-align: center;
+  font-size: 10px;
+}
+
+.pump-active {
+  color: orange;
+}
+
+.pump-inactive {
+  color: darkred;
+}
+
+/* Rotating icon animation */
+.rotating-icon {
+  animation: rotate 2s linear infinite; /* Adjust duration as needed */
+}
+
+/* Keyframes for rotation animation */
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Moving icon animation */
+.moving-icon {
+  animation: move-up-down 1s ease-in-out infinite; /* Adjust duration and easing as needed */
+}
+
+/* Keyframes for up and down movement */
+@keyframes move-up-down {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Waving icon animation */
+.waving-icon {
+  animation: wave 1.5s ease-in-out infinite; /* Adjust duration and easing as needed */
+}
+
+/* Keyframes for waving effect */
+@keyframes wave {
+  0%, 100% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(25px);
+  }
+}
+
+
+.block-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2 equal columns */
+  gap: 1px; /* Space between rows */
+}
+
+.property-name {
+  background-color: lightgray;
+  padding: 2px;
+  font-weight: bold;
+}
+
+.property-value {
+  background-color: white;
+  padding: 8px;
+}

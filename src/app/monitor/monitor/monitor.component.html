@@ -1,1 +1,61 @@
-<p>monitor works!</p>
+<!-- app-map-toolbar class="col-lg-12" id="toolbar" style="top:40px; max-height: 40px;" (click)="actionClick($event)"></app-map-toolbar -->
+<div class="col-lg-12" id="toolbar" style="top:40px; max-height: 40px;" (click)="actionClick($event)">&nbsp;</div>
+
+<div class="row" style="margin-top: 40px;">
+    <div class="col-md-9 map-container">
+
+        <div id="map"></div>
+        <input type="text" id="pac-input" placeholder="Search Box" class="form-control"
+            style="opacity: 1; border: 1px solid darkgrey" />
+        <ng-template #infoWindowContainer></ng-template>
+
+        <div class="overlay-container" [ngClass]="{'show-overlay': showOverlay}">
+            <div class="overlay" style="vertical-align: top;">
+                <div class="card">
+                    <div class="card-header card-header-tabs card-header-primary">
+                        <div class="nav-tabs-navigation">
+                            <ul class="nav nav-tabs" data-tabs="tabs">
+                                <li class="nav-item">
+                                    <a mat-button class="nav-link active" href="#addcomp" data-toggle="tab">
+                                        <i class="material-icons">account_balance</i> Add
+                                        <div class="ripple-container"></div>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a mat-button class="nav-link" href="#search" data-toggle="tab">
+                                        <i class="material-icons">get_app</i> Options
+                                        <div class="ripple-container"></div>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a mat-button class="nav-link" href="#sectors" data-toggle="tab">
+                                        <i class="material-icons">get_app</i> Scheme
+                                        <div class="ripple-container"></div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="addcomp">
+                                <!-- app-map-addicons></app-map-addicons --> &nbsp;
+                            </div>
+                            <div class="tab-pane" id="search">
+                                <!-- app-importpers></app-importpers --> &nbsp;
+                            </div>
+                            <div class="tab-pane" id="sectors">
+                                <!-- app-map-sectors></app-map-sectors --> &nbsp;
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3" style="padding-left: 0px;">
+        <app-monitor-stats class="col-md-12"></app-monitor-stats>
+        <hr/>
+        <app-monitor-alerts></app-monitor-alerts>
+    </div>
+</div>
