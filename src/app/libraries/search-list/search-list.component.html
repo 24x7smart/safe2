@@ -1,0 +1,83 @@
+<div class="search-area">
+    <form>
+        <div class="row">
+            <div class="col-md-3" *ngFor="let criteria of searchConfig.search.criteria">
+                <ng-container [ngSwitch]="criteria.type">
+
+                    <!-- Date Picker -->
+                    <mat-form-field *ngSwitchCase="'date'">
+                        <mat-label>{{criteria.label}}</mat-label>
+                        <input matInput [matDatepicker]="picker" [(ngModel)]="searchCriteria[criteria.id]"
+                            name="{{criteria.id}}">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+
+                    <!-- Select Box -->
+                    <mat-form-field *ngSwitchCase="'select'">
+                        <mat-label>{{criteria.label}}</mat-label>
+                        <mat-select [(value)]="searchCriteria[criteria.id]" name="{{criteria.id}}">
+                            <mat-option *ngFor="let item of criteria.list.list" [value]="item.value">
+                                {{item.display}}
+                            </mat-option>
+                        </mat-select>
+                        <ng-container *ngIf="criteria.list.type === 'c'"
+                            (ngModelChange)="fetchDataForSelect(criteria)"></ng-container>
+                    </mat-form-field>
+
+                    <!-- Text Input -->
+                    <mat-form-field *ngSwitchCase="'text'">
+                        <mat-label>{{criteria.label}}</mat-label>
+                        <input matInput [(ngModel)]="searchCriteria[criteria.id]" name="{{criteria.id}}" type="text">
+                    </mat-form-field>
+
+                    <!-- Number Input -->
+                    <mat-form-field *ngSwitchCase="'number'">
+                        <mat-label>{{criteria.label}}</mat-label>
+                        <input matInput [(ngModel)]="searchCriteria[criteria.id]" name="{{criteria.id}}" type="number">
+                    </mat-form-field>
+
+                </ng-container>
+            </div>
+        </div>
+        <!-- Button Row -->
+        <div class="button-row">
+            <!-- Left-aligned buttons: Add and Export 2 Excel -->
+            <div class="left-buttons">
+                <button mat-raised-button color="primary" (click)="onAdd()" *ngIf="searchConfig.list.add">Add</button>
+                <button mat-raised-button color="accent" (click)="onExport()"
+                    *ngIf="searchConfig.list.export2excel">Export 2 Excel</button>
+            </div>
+
+            <!-- Right-aligned buttons: Search and Reset -->
+            <div class="right-buttons">
+                <button mat-raised-button color="primary" (click)="onSearch()">Search</button>
+                <button mat-button (click)="onReset()">Reset</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="list-area">
+    <table mat-table [dataSource]="sortedData" class="col-md-12">
+        <ng-container *ngFor="let field of searchConfig.list.fields" [matColumnDef]="field.field">
+            <th mat-header-cell *matHeaderCellDef>
+                {{field.label}}
+                <mat-icon *ngIf="field.sortable" (click)="onSort(field.field, field.dtype)">keyboard_arrow_down</mat-icon>
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element[field.field]}} </td>
+        </ng-container>
+        <!-- Actions column -->
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let row">
+            <button mat-icon-button *ngFor="let action of searchConfig.list.actions" (click)="onRowAction(row.aid, action.code)">
+                <mat-icon>{{ action.icon }}</mat-icon>
+            </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>

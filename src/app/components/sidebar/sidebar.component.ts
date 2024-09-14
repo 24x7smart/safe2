@@ -11,62 +11,45 @@ declare interface RouteInfo {
 }
 
 export const ROUTES: RouteInfo[] = [
-  { path: '/dashboard', title: 'Console',  icon: 'dashboard', class: '',
+  { path: '/monitor', title: 'Alarms',  icon:'local_fire_department', class: '',
+    children: [
+      {path: 'monitor/dashboard', title: 'Dashboard',  icon: 'dashboard', class: '', children: []},
+      {path: 'monitor/monitor', title: 'Monitor',  icon: 'notifications_active', class: '', children: []},
+      {path: 'monitor/history', title: 'Alarm History',  icon: 'list', class: '', children: []},
+    ]
+  },
+  { path: '/faults', title: 'Faults',  icon:'handyman', class: '',
+    children: [
+      {path: '/faults/dashboard', title: 'Dashboard',  icon: 'dashboard', class: '', children: []},
+      {path: '/faults/renewals', title: 'NOC Renewals',  icon: 'autorenew', class: '', children: []},
+      {path: '/faults/history', title: 'History',  icon: 'list', class: '', children: []},
+    ]
+  },
+  { path: '/properties', title: 'Properties',  icon:'place', class: '',
     children: [
       {path: '/deploy/console', title: 'Dashboard',  icon: 'dashboard', class: '', children: []},
-      {path: '/dashboard/messages', title: 'Send Messages',  icon: 'dashboard', class: '', children: []},
-      {path: '/dashboard/tickets', title: 'Duty Tickets',  icon: 'dashboard', class: '', children: []},
-      {path: '/dashboard/rolls', title: 'Nominal Rolls',  icon: 'dashboard', class: '', children: []}
+      {path: 'properties/list', title: 'Properties',  icon: 'list', class: '', children: []},
+      {path: 'properties/approvals', title: 'Approvals',  icon: 'fact_check', class: '', children: []},
+      {path: 'properties/oos', title: 'No Device Properties',  icon: 'playlist_remove', class: '', children: []},
     ]
   },
-  { path: '/user-profile', title: 'Scheme',  icon:'person', class: '',
+  { path: '/reports', title: 'Reports',  icon:'list_alt', class: '',
     children: [
-      {path: '/deploy/components', title: 'Components',  icon: 'line_weight', class: '', children: []},
-      {path: '/deploy/scheme', title: 'Scheme',  icon: 'list', class: '', children: []},
-      {path: '/deploy/schememap', title: 'Map',  icon: 'map', class: '', children: []},
-      {path: '/cameras', title: 'Cameras',  icon: 'photo_camnera', class: '', children: []}
+      {path: '/reports/alarmrep', title: 'Alarm Report',  icon: 'notifications_active', class: '', children: []},
+      {path: '/reports/faultrep', title: 'Faults Report',  icon: 'handyman', class: '', children: []},
+      {path: '/reports/compscore', title: 'Compliance Score',  icon: 'verified', class: '', children: []},
+      {path: '/reports/renewrep', title: 'Pending Renewal Report',  icon: 'sync_problem', class: '', children: []},
+      {path: '/reports/proprep', title: 'Properties Report',  icon: 'place', class: '', children: []},
+      {path: '/reports/propdrep', title: 'Property Summary',  icon: 'where_to_vote', class: '', children: []}
     ]
   },
-  { path: '/table-list1', title: 'Coordination',  icon:'content_paste', class: '',
+  { path: '/admin', title: 'Administration',  icon:'person', class: '',
     children: [
-      {path: '/deploy/units', title: 'Units',  icon: 'domain', class: '', children: []},
-      {path: '/deploy/personnel', title: 'Personnel',  icon: 'group', class: '', children: []},
-      {path: '/importpers', title: 'Import',  icon: 'group_add', class: '', children: []},
-      {path: '/assign', title: 'Assign',  icon: 'group_add', class: '', children: []}
+      {path: '/admin/users', title: 'Users',  icon: 'group', class: '', children: []},
+      {path: '/admin/settings', title: 'Settings',  icon: 'settings', class: '', children: []}
     ]
-  },
-  { path: '/maps', title: 'Deployment',  icon:'place', class: '',
-    children: [
-      {path: 'deploy/alloc', title: 'Allocate',  icon: 'person_pin', class: '', children: []}
-    ]
-  },
-  { path: '/icons', title: 'Reports',  icon:'bubble_chart', class: '',
-    children: [
-      {path: '/depreports', title: 'Deployment Reports',  icon: 'person_pin', class: '', children: []},
-      {path: '/persreports', title: 'Personnel Reports',  icon: 'group', class: '', children: []},
-      {path: '/unitreports', title: 'Unit Reports',  icon: 'domain', class: '', children: []},
-      {path: '/elecreports', title: 'Election Reports',  icon: 'how_to_vote', class: '', children: []}
-    ]
-  },
-  { path: '/notifications', title: 'Administration',  icon:'notifications', class: '',
-    children: [
-      {path: '/admin/event', title: 'Event',  icon: 'dashboard', class: '', children: []},
-      {path: '/settings', title: 'Settings',  icon: 'settings', class: '', children: []}
-    ]
-  },
-  // { path: '/upgrade', title: 'Upgrade to PRO',  icon:'unarchive', class: 'active-pro' },
+  }
 ];
-
-// export const ROUTES: RouteInfo[] = [
-//     { path: '/dashboard', title: 'Dashboard',  icon: 'dashboard', class: '' },
-//     { path: '/user-profile', title: 'User Profile',  icon:'person', class: '' },
-//     { path: '/table-list', title: 'Table List',  icon:'content_paste', class: '' },
-//     { path: '/typography', title: 'Typography',  icon:'library_books', class: '' },
-//     { path: '/icons', title: 'Icons',  icon:'bubble_chart', class: '' },
-//     { path: '/maps', title: 'Maps',  icon:'location_on', class: '' },
-//     { path: '/notifications', title: 'Notifications',  icon:'notifications', class: '' },
-//     { path: '/upgrade', title: 'Upgrade to PRO',  icon:'unarchive', class: 'active-pro' },
-// ];
 
 @Component({
   selector: 'app-sidebar',

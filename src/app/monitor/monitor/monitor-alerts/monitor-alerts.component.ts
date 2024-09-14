@@ -17,7 +17,8 @@ export class MonitorAlertsComponent implements OnInit {
       confirmTime: '',
       responseTime: '',
       lat: 16.498510651609376, 
-      lng: 80.6535938460216
+      lng: 80.6535938460216,
+      dev_type: 'usb'
     },
     {
       status: 'Active',
@@ -28,7 +29,20 @@ export class MonitorAlertsComponent implements OnInit {
       confirmTime: '01:21',
       responseTime: '01:23',
       lat: 16.501340890057094,  
-      lng: 80.6433614517361
+      lng: 80.6433614517361,
+      dev_type: 'usb'
+    },
+    {
+      status: 'Active',
+      name: 'Rayalseema Ruchulu',
+      startTime: '01:40',
+      occupancy: 'Mercantile',
+      disposition: 'Acked',
+      confirmTime: '01:45',
+      responseTime: '01:54',
+      lat: 17.402951957127858,   
+      lng: 78.4630093274499,
+      dev_type: 'videocam'
     }
   ];
 
@@ -69,7 +83,8 @@ export class MonitorAlertsComponent implements OnInit {
   }  
 
   viewAlert(id: number): void {
-    const url = '#monitor/alert/' + id;  // URL to open
+    const url = '#/monitor/alert';// + id;  // URL to open
+    alert(url);
     window.open(url, 'alert');  // Opens in a new tab
   }
 }

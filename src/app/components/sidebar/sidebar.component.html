@@ -63,7 +63,7 @@
             <div class="collapse" id="{{menuItem.title}}">
                 <ul class="nav">
                     <li routerLinkActive="active" *ngFor="let subItem of menuItem.children" class="{{subItem.class}} nav-item sub-item">
-                        <a class="nav-link" [routerLink]="[subItem.path]" title="{{subItem.title}}" style="border: 1px white solid">
+                        <a class="nav-link" [routerLink]="[subItem.path]" title="{{subItem.title}}" style="border: 1px white solid" style="height: 35px;">
                             <i class="material-icons" >{{subItem.icon}}</i>
                             <!-- span class="sidebar-normal">{{subItem.title}}</span -->
                         </a>

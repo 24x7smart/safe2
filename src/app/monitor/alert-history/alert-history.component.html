@@ -1,0 +1,12 @@
+<div class="parent-container" style="margin-top: 100px;">
+    <app-search-list 
+      [searchConfig]="searchConfig"
+      [listData]="listData"
+      (searchCallback)="fetchData($event)"
+      (addCallback)="onAdd()"
+      (exportCallback)="exportToExcel($event)"
+      (fetchSelectData)="fetchSelectOptions($event)">
+      (rowActionCallback)="onRowAction($event)">
+    </app-search-list>
+</div>
+  

@@ -22,6 +22,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { AlertHistoryComponent } from './alert-history/alert-history.component';
+import { LibrariesModule } from 'app/libraries/libraries.module';
 
 
 @NgModule({
@@ -33,7 +35,8 @@ import { MatInputModule } from '@angular/material/input';
     FloorsComponent,
     FloorDetailsComponent,
     BlockDetailsComponent,
-    AlertChatComponent
+    AlertChatComponent,
+    AlertHistoryComponent
   ],
   imports: [
     CommonModule,
@@ -48,7 +51,8 @@ import { MatInputModule } from '@angular/material/input';
     MatInputModule,
     MatTableModule,
     BrowserAnimationsModule, // Required for Angular Material animations
-    MonitorRoutingModule
+    MonitorRoutingModule,
+    LibrariesModule
   ]
 })
 export class MonitorModule { }
