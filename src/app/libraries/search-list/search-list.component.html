@@ -59,7 +59,7 @@
 </div>
 
 <div class="list-area">
-    <table mat-table [dataSource]="sortedData" class="col-md-12">
+    <table mat-table [dataSource]="sortedData" class="col-md-12 mat-elevation-z8">
         <ng-container *ngFor="let field of searchConfig.list.fields" [matColumnDef]="field.field">
             <th mat-header-cell *matHeaderCellDef>
                 {{field.label}}

@@ -21,6 +21,7 @@ export const ROUTES: RouteInfo[] = [
   { path: '/faults', title: 'Faults',  icon:'handyman', class: '',
     children: [
       {path: '/faults/dashboard', title: 'Dashboard',  icon: 'dashboard', class: '', children: []},
+      {path: '/faults/active', title: 'Active Faults',  icon: 'warning', class: '', children: []},
       {path: '/faults/renewals', title: 'NOC Renewals',  icon: 'autorenew', class: '', children: []},
       {path: '/faults/history', title: 'History',  icon: 'list', class: '', children: []},
     ]

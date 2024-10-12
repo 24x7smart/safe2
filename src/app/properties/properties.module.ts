@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SearchListComponent } from './search-list/search-list.component';
-import { MatCardModule } from '@angular/material/card';
+import { PropListComponent } from './prop-list/prop-list.component';
+import { PropApproveComponent } from './prop-approve/prop-approve.component';
+import { PropNodeviceComponent } from './prop-nodevice/prop-nodevice.component';
+import { PropertiesRoutingModule } from './properties-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -11,32 +14,21 @@ import { MatListModule } from '@angular/material/list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatSelectModule } from '@angular/material/select';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSortModule } from '@angular/material/sort';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SummaryCardsComponent } from './summary-cards/summary-cards.component';
-import { SafeGoogleMapComponent } from './safe-google-map/safe-google-map.component';
+import { LibrariesModule } from 'app/libraries/libraries.module';
 
 
 
 @NgModule({
   declarations: [
-    SearchListComponent,
-    SummaryCardsComponent,
-    SafeGoogleMapComponent
+    PropListComponent,
+    PropApproveComponent,
+    PropNodeviceComponent
   ],
   imports: [
     CommonModule,
     BrowserModule,
     FormsModule,
-    MatSelectModule,
-    MatNativeDateModule,
-    MatButtonModule,
-    MatSortModule,
     MatCardModule,
     MatGridListModule,
     MatIconModule,
@@ -45,13 +37,9 @@ import { SafeGoogleMapComponent } from './safe-google-map/safe-google-map.compon
     MatFormFieldModule,
     MatInputModule,
     MatTableModule,
-    MatDatepickerModule,
     BrowserAnimationsModule, // Required for Angular Material animations
-  ],
-  exports: [
-    SearchListComponent,
-    SummaryCardsComponent,
-    SafeGoogleMapComponent
+    LibrariesModule,
+    PropertiesRoutingModule
   ]
 })
-export class LibrariesModule { }
+export class PropertiesModule { }

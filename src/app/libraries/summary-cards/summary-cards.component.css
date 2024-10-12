@@ -1,0 +1,12 @@
+.summary-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  
+  .summary-card {
+    width: 200px;
+    text-align: center;
+    padding: 10px;
+  }
+  

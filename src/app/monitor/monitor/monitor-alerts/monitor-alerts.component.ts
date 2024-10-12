@@ -84,7 +84,6 @@ export class MonitorAlertsComponent implements OnInit {
 
   viewAlert(id: number): void {
     const url = '#/monitor/alert';// + id;  // URL to open
-    alert(url);
     window.open(url, 'alert');  // Opens in a new tab
   }
 }

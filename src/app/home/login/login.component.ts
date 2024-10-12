@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -8,13 +9,26 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
   }
 
   LoginUser() {
-    this.router.navigateByUrl('/home/launch');
+    console.log("here");
+    this.authService.loginUser({login: "admin", password: "password"}).subscribe(
+      (data) => {
+        alert(data.token);
+        console.log(data.token);
+        localStorage.setItem('token', data.token); // Store JWT token
+        this.router.navigate(['/home/launch']); // Navigate to protected page
+      },
+      (error) => {
+        console.log('Login failed');
+      }
+    );
+
+    //this.router.navigateByUrl('/home/launch');
   }
 
 }

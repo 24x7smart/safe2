@@ -1,4 +1,5 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
+import { MatTable } from '@angular/material/table';
 
 @Component({
   selector: 'app-search-list',
@@ -14,10 +15,14 @@ export class SearchListComponent implements OnInit {
   @Output() fetchSelectData = new EventEmitter<string>();
   @Output() rowActionCallback = new EventEmitter<{ id: any, code: string }>();
 
+  @ViewChild(MatTable) listTable: MatTable<any>;
+
   searchCriteria: any = {};
   sortedData: any[] = [];
   sortOrder: { [key: string]: 'asc' | 'desc' | '' } = {};
   displayedColumns: string[] = [];
+
+  constructor(private cdr: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.sortedData = [...this.listData];
@@ -36,6 +41,12 @@ export class SearchListComponent implements OnInit {
   initializeDisplayedColumns() {
     this.displayedColumns = this.searchConfig.list.fields.map((field: any) => field.field);
     this.displayedColumns.push('actions'); // Add the actions column
+  }
+
+  setListData(data: any[]) {
+    this.listData = data;
+    this.sortedData = [...this.listData];
+    this.listTable.renderRows();
   }
 
   onSearch() {

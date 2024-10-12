@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { SearchListComponent } from 'app/libraries/search-list/search-list.component';
 
 @Component({
@@ -7,6 +7,12 @@ import { SearchListComponent } from 'app/libraries/search-list/search-list.compo
   styleUrls: ['./alert-history.component.css']
 })
 export class AlertHistoryComponent implements OnInit {
+
+  @ViewChild('searchList') searchListComponent!: SearchListComponent;
+  listData = [
+    {aid: 1, ondate:"2024-09-14", stn_name: "Autonagar", prop_name: "Trendset Mall", address: "Benzcircle, Vijayawada", occu: "Mercantile", status: "Unconfirmed", lastUpdate: "2024-09-14T04:00:00"},
+    {aid: 2, ondate:"2024-09-14", stn_name: "Vijayawada", prop_name: "Unity Office Building", address: "Bandar Road, Vijayawada", occu: "Business", status: "Active", lastUpdate: "2024-09-14T03:00:00"}
+  ];
 
   searchConfig = {
     "search": {
@@ -47,15 +53,16 @@ export class AlertHistoryComponent implements OnInit {
     }
   }
 
-  constructor() { }
+  constructor(private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
   }
 
-  listData = [];
-
   fetchData(searchCriteria: any) {
-    // Handle fetching data based on searchCriteria
+    const tempData = [
+      {aid: 3, ondate:"2024-09-13", stn_name: "Vijayawada", prop_name: "PVP One", address: "Near Stadium, Bandar Road, Vijayawada", occu: "Mercantile", status: "Closed", lastUpdate: "2024-09-14T04:00:00"}
+    ];
+    this.listData.push(tempData[0]);
   }
 
   onAdd() {
@@ -71,6 +78,10 @@ export class AlertHistoryComponent implements OnInit {
   }
 
   onRowAction(event: { id: any, code: string }) {
+    if ( event.code === "view") {
+      const url = '#/monitor/alert';// + id;  // URL to open
+      window.open(url, '_blank');  // Opens in a new tab
+    }
   }
 
 }

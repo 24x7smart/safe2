@@ -15,7 +15,8 @@ export class MonitorStatsComponent implements OnInit {
         { icon: 'error_outline', value: 7, label: 'False Alerts' },
         { icon: 'check_circle', value: 4, label: 'Closed Alerts' },
       ]
-    },
+    }];
+/*    
     { label: 'Faults', icon: 'engineering',
       items: [
         { icon: 'apartment', value: 101, label: 'Properties' },
@@ -25,7 +26,7 @@ export class MonitorStatsComponent implements OnInit {
           ]
     }
   ];
-
+*/
   constructor() { }
 
   ngOnInit(): void {

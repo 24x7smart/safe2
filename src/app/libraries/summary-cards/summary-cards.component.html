@@ -1,0 +1,12 @@
+<div class="summary-cards">
+    <mat-card *ngFor="let item of results" class="summary-card">
+      <mat-card-header>
+        <mat-icon>{{ item.icon }}</mat-icon>
+      </mat-card-header>
+      <mat-card-content>
+        <h3>{{ item.label }}</h3>
+        <p>{{ item.result }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  

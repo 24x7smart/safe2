@@ -1,0 +1,16 @@
+.parent-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 20px; 
+  }
+  
+  app-search-list {
+    flex-grow: 1;
+    display: block;
+  }
+  
+.safe-map {
+    height: 100%;
+    display: flex;
+}

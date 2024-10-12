@@ -8,23 +8,17 @@ import { NotificationsComponent } from '../../notifications/notifications.compon
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
 
 export const AdminLayoutRoutes: Routes = [
-    { path: 'planning',
-        children: [
-            { path: 'dashboard',      component: DashboardComponent },
-            { path: 'table-list',     component: TableListComponent },
-            { path: 'typography',     component: TypographyComponent },
-            { path: 'icons',          component: IconsComponent },
-            { path: 'notifications',  component: NotificationsComponent },
-            { path: 'cameras',        component: UpgradeComponent },
-        ]
-    },
     {
         path: 'monitor',
         loadChildren: () => import('app/monitor/monitor.module').then(m => m.MonitorModule)
     },
     {
-        path: 'deploy',
-        loadChildren: () => import('app/planning/planning.module').then(m => m.PlanningModule)
+        path: 'faults',
+        loadChildren: () => import('app/faults/faults.module').then(m => m.FaultsModule)
+    },
+    {
+        path: 'properties',
+        loadChildren: () => import('app/properties/properties.module').then(m => m.PropertiesModule)
     },
     {
         path: 'admin',

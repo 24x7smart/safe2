@@ -1,0 +1,13 @@
+<div class="row">
+
+    <div #searchList class="col-md-8 parent-container" style="margin-top: 100px;">
+        <app-search-list [searchConfig]="searchConfig" [listData]="listData" (searchCallback)="fetchData($event)"
+            (addCallback)="onAdd()" (exportCallback)="exportToExcel($event)"
+            (fetchSelectData)="fetchSelectOptions($event)" (rowActionCallback)="onRowAction($event)">
+        </app-search-list>
+    </div>
+
+    <div class="col-md-3 safe-map" style="background-color: red;">
+        <app-safe-google-map [markers]="listData" [mapConfig]="mapConfig" class="col-md-12 safe-map"></app-safe-google-map>        
+    </div>
+</div>
