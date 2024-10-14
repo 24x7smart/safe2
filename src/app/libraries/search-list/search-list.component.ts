@@ -91,4 +91,22 @@ export class SearchListComponent implements OnInit {
       this.fetchSelectData.emit(criteria.id);
     }
   }
+
+  // Add a function to handle dynamic condition checking
+  evaluateCondition(rowValue: any, condition: string, value: any): boolean {
+    switch (condition) {
+      case '===': return rowValue === value;
+      case '!==': return rowValue !== value;
+      case '>': return rowValue > value;
+      case '>=': return rowValue >= value;
+      case '<': return rowValue < value;
+      case '<=': return rowValue <= value;
+      default: return false;
+    }
+  }
+
+    // Function to access nested properties
+    getPropertyValue(element: any, field: any) {
+      return field.field.split('.').reduce((obj, key) => (obj && obj[key] !== 'undefined') ? obj[key] : null, element);
+    }
 }

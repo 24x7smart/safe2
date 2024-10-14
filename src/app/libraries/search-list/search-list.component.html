@@ -65,15 +65,19 @@
                 {{field.label}}
                 <mat-icon *ngIf="field.sortable" (click)="onSort(field.field, field.dtype)">keyboard_arrow_down</mat-icon>
             </th>
-            <td mat-cell *matCellDef="let element"> {{element[field.field]}} </td>
+            <td mat-cell *matCellDef="let element"> {{ getPropertyValue(element, field) }} </td> <!--{{element[field.field]}}-->
         </ng-container>
         <!-- Actions column -->
         <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef> Actions </th>
-            <td mat-cell *matCellDef="let row">
-            <button mat-icon-button *ngFor="let action of searchConfig.list.actions" (click)="onRowAction(row.aid, action.code)">
-                <mat-icon>{{ action.icon }}</mat-icon>
-            </button>
+            <td mat-cell *matCellDef="let row" style="width: 10%;">
+                <ng-container *ngFor="let action of searchConfig.list.actions">
+                    <button mat-icon-button
+                            (click)="onRowAction(row.aid, action.code)" title="{{action.label}}"
+                            *ngIf="action.cfield === '' || evaluateCondition(row[action.cfield], action.condition, action.cvalue)">
+                        <mat-icon>{{ action.icon }}</mat-icon>
+                    </button>
+                </ng-container>            
             </td>
         </ng-container>
 

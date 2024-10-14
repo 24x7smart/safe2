@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { SearchListComponent } from 'app/libraries/search-list/search-list.component';
 import { Building } from 'app/models/building.model';
 import { BuildingService } from 'app/services/properties/building.service';
 import { SafeGoogleMapComponent } from '../../libraries/safe-google-map/safe-google-map.component'; // Adjust the path as needed
+import { SummaryCardsComponent } from 'app/libraries/summary-cards/summary-cards.component';
 
 @Component({
   selector: 'app-prop-list',
@@ -13,6 +14,9 @@ export class PropListComponent implements OnInit {
 
   @ViewChild(SearchListComponent, { static: false }) searchListComponent: SearchListComponent;
   @ViewChild(SafeGoogleMapComponent) googleMapComponent!: SafeGoogleMapComponent;
+  @ViewChild(SummaryCardsComponent) summaryComponent!: SummaryCardsComponent;
+
+  @ViewChild('infoTemplate') infoTemplate!: TemplateRef<any>;
 
   listData = [];  
 
@@ -38,7 +42,7 @@ export class PropListComponent implements OnInit {
       ]
     },
     "list": {
-      "id": "id",
+      "id": "build_id",
       "export2excel": true,
       "add": false,
       "fields": [
@@ -49,7 +53,8 @@ export class PropListComponent implements OnInit {
         {"field": "noc", "dtype": "string", "label": "NOC", "sortable": false}
       ],
       "actions": [
-        {"code": "view", "icon": "visibility"}
+        {"code": "view", "icon": "visibility", "label": "View", "cfield": ""},
+        {"code": "view", "icon": "cast", "label": "Device Info", "cfield": "noc", "cvalue": "", "condition": "!=="}
       ]
     }
   };
@@ -59,6 +64,15 @@ export class PropListComponent implements OnInit {
     center: { lat: 16.509173261429932, lng: 80.66136286996687 },
     zoom: 10
   };
+
+  summaryData = { 
+    config: {
+      class: "col-md-5"
+    },
+    cards: [
+      {icon: 'functions', label: 'Total', function: 'COUNT', field: '', check_field: '', check_value: ''},
+      {icon: 'cancel', label: 'No Device', function: 'COUNT', field: '', check_field: 'noc', check_value: ''}
+    ]};
 
   constructor(private buildingService: BuildingService) { }
 
@@ -74,7 +88,8 @@ export class PropListComponent implements OnInit {
         this.searchListComponent.setListData(data);
 
         // Call the setListData method on the child component
-        this.googleMapComponent.setListData(this.listData);        
+        this.googleMapComponent.setListData(this.listData);   
+        this.summaryComponent.setData(this.listData);     
       },
       (error) => {
         console.error('Error loading buildings:', error);  // Handle error

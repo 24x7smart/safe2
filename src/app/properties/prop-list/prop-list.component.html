@@ -1,5 +1,4 @@
 <div class="row">
-
     <div #searchList class="col-md-8 parent-container" style="margin-top: 100px;">
         <app-search-list [searchConfig]="searchConfig" [listData]="listData" (searchCallback)="fetchData($event)"
             (addCallback)="onAdd()" (exportCallback)="exportToExcel($event)"
@@ -7,7 +6,23 @@
         </app-search-list>
     </div>
 
-    <div class="col-md-3 safe-map" style="background-color: red;">
-        <app-safe-google-map [markers]="listData" [mapConfig]="mapConfig" class="col-md-12 safe-map"></app-safe-google-map>        
+    <div class="col-md-3 safe-map" style="padding-left: 0px; padding-right: 0px; margin-top: 100px;">
+        <div class="container row">
+            <div class="col-md-12">
+                <app-summary-cards [config]="summaryData" [data]="listData"></app-summary-cards>
+            </div>
+            <div class="col-md-12">
+                <ng-template #infoTemplate let-data>
+                    <div>
+                        <h4>{{ data.name }}</h4>
+                        <p>Occupancy: {{ data.occu }}</p>
+                        <p>Address: {{ data.address }}</p>
+                    </div>
+                </ng-template>
+                <app-safe-google-map [markers]="listData" [mapConfig]="mapConfig" class="safe-map"
+                    [infoTemplate]="infoTemplate">
+                </app-safe-google-map>
+            </div>
+        </div>
     </div>
 </div>

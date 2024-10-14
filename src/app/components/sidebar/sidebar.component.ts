@@ -31,7 +31,7 @@ export const ROUTES: RouteInfo[] = [
       {path: '/deploy/console', title: 'Dashboard',  icon: 'dashboard', class: '', children: []},
       {path: 'properties/list', title: 'Properties',  icon: 'list', class: '', children: []},
       {path: 'properties/approvals', title: 'Approvals',  icon: 'fact_check', class: '', children: []},
-      {path: 'properties/oos', title: 'No Device Properties',  icon: 'playlist_remove', class: '', children: []},
+      {path: 'properties/nodev', title: 'No Device Properties',  icon: 'playlist_remove', class: '', children: []},
     ]
   },
   { path: '/reports', title: 'Reports',  icon:'list_alt', class: '',

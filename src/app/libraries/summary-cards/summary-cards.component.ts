@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { DataProcessor } from '../../utilities/data-processor.js';
 
 @Component({
@@ -8,19 +8,32 @@ import { DataProcessor } from '../../utilities/data-processor.js';
 })
 export class SummaryCardsComponent implements OnInit {
 
-  @Input() config: any[] = [];
+  @Input() config: {config: {class: string}, cards: any[]};
   @Input() data: any[] = [];
 
   results: any[] = [];
 
-  constructor() {}
+  constructor(private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.processConfig();
+    //console.log(this.config);
+  }
+
+  setData(data: any[]) {
+
+    this.data = data;
+    this.processConfig();
+    console.log(this.results);
+
+    this.cdr.detectChanges();
+
   }
 
   processConfig() {
-    this.results = this.config.map((item) => {
+
+    this.results = this.config.cards.map((item) => {
+      console.log('Processing - ', item);
       const result = DataProcessor.processData(
         this.data,
         item.function,

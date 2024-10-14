@@ -1,1 +1,23 @@
-<p>prop-approve works!</p>
+<div class="row">
+    <div #searchList class="col-md-8 parent-container" style="margin-top: 100px;">
+        <div class="container row">
+            <div class="col-md-12">
+                <app-summary-cards [config]="summaryData" [data]="listData"></app-summary-cards>
+            </div>
+            <div class="col-md-12">
+                <app-search-list [searchConfig]="searchConfig" [listData]="listData" (searchCallback)="fetchData($event)"
+                (addCallback)="onAdd()" (exportCallback)="exportToExcel($event)"
+                (fetchSelectData)="fetchSelectOptions($event)" (rowActionCallback)="onRowAction($event)">
+            </app-search-list>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 safe-map" style="padding-left: 0px; padding-right: 0px; margin-top: 100px;">
+        <div class="container row">
+            <div class="col-md-12">
+                &nbsp;
+            </div>
+        </div>
+    </div>
+</div>

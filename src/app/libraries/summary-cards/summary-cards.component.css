@@ -1,12 +1,15 @@
 .summary-cards {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
   
-  .summary-card {
-    width: 200px;
-    text-align: center;
-    padding: 10px;
-  }
+.summary-card {
+/*    width: 150px; */
+  text-align: center;
+  padding: 10px;
+}
   
+.summ-icons {
+  transform: scale(2);
+}

@@ -1,12 +1,11 @@
-<div class="summary-cards">
-    <mat-card *ngFor="let item of results" class="summary-card">
-      <mat-card-header>
-        <mat-icon>{{ item.icon }}</mat-icon>
-      </mat-card-header>
+<div class="col-md-12">
+  <div class="summary-cards">
+    <mat-card *ngFor="let item of results" class="summary-card {{config.config.class}}">
       <mat-card-content>
-        <h3>{{ item.label }}</h3>
-        <p>{{ item.result }}</p>
+        <h4><mat-icon class="summ-icons pull-left">{{ item.icon }}</mat-icon>
+          {{ item.label }}</h4>
+        <h3 class="bg-info">{{ item.result }}</h3>
       </mat-card-content>
     </mat-card>
   </div>
-  
+</div>

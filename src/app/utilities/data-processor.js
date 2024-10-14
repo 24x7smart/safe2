@@ -1,6 +1,6 @@
 export class DataProcessor {
     // Main function to process the data
-    public static processData(data: any[], operation: string, field: string, check_field: string, check_value: any): any {
+    static processData(data, operation, field, check_field, check_value) {
       if (!Array.isArray(data)) {
         throw new Error('Data must be an array');
       }
