@@ -16,10 +16,13 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSortModule } from '@angular/material/sort';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SummaryCardsComponent } from './summary-cards/summary-cards.component';
 import { SafeGoogleMapComponent } from './safe-google-map/safe-google-map.component';
+import { ProcessStepComponent } from './process-step/process-step.component';
 
 
 
@@ -27,7 +30,8 @@ import { SafeGoogleMapComponent } from './safe-google-map/safe-google-map.compon
   declarations: [
     SearchListComponent,
     SummaryCardsComponent,
-    SafeGoogleMapComponent
+    SafeGoogleMapComponent,
+    ProcessStepComponent
   ],
   imports: [
     CommonModule,
@@ -46,12 +50,15 @@ import { SafeGoogleMapComponent } from './safe-google-map/safe-google-map.compon
     MatInputModule,
     MatTableModule,
     MatDatepickerModule,
+    MatCheckboxModule,
+    MatRadioModule,
     BrowserAnimationsModule, // Required for Angular Material animations
   ],
   exports: [
     SearchListComponent,
     SummaryCardsComponent,
-    SafeGoogleMapComponent
+    SafeGoogleMapComponent,
+    ProcessStepComponent
   ]
 })
 export class LibrariesModule { }

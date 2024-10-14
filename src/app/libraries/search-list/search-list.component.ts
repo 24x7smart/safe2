@@ -1,3 +1,4 @@
+import { SelectionModel } from '@angular/cdk/collections';
 import { Component, Input, Output, EventEmitter, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
 
@@ -14,6 +15,7 @@ export class SearchListComponent implements OnInit {
   @Output() exportCallback = new EventEmitter<any[]>();
   @Output() fetchSelectData = new EventEmitter<string>();
   @Output() rowActionCallback = new EventEmitter<{ id: any, code: string }>();
+  @Output() selectionChange = new EventEmitter<any[]>();
 
   @ViewChild(MatTable) listTable: MatTable<any>;
 
@@ -22,10 +24,14 @@ export class SearchListComponent implements OnInit {
   sortOrder: { [key: string]: 'asc' | 'desc' | '' } = {};
   displayedColumns: string[] = [];
 
+  selectedRow: any = null;
+  selection = new SelectionModel<any>(true, []); // For checkboxes
+  
   constructor(private cdr: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.sortedData = [...this.listData];
+    
     this.initializeSortOrder();
     this.initializeDisplayedColumns();  // Initialize displayedColumns here
   }
@@ -39,9 +45,12 @@ export class SearchListComponent implements OnInit {
   }
 
   initializeDisplayedColumns() {
-    this.displayedColumns = this.searchConfig.list.fields.map((field: any) => field.field);
+    if (this.searchConfig.list.select) {
+      this.displayedColumns.push('select'); // Add the selection column
+    }
+    this.displayedColumns = this.displayedColumns.concat(this.searchConfig.list.fields.map((field: any) => field.field));
     this.displayedColumns.push('actions'); // Add the actions column
-  }
+}
 
   setListData(data: any[]) {
     this.listData = data;
@@ -109,4 +118,18 @@ export class SearchListComponent implements OnInit {
     getPropertyValue(element: any, field: any) {
       return field.field.split('.').reduce((obj, key) => (obj && obj[key] !== 'undefined') ? obj[key] : null, element);
     }
+
+    onSelectionChange(data) {
+      if (this.searchConfig.list.select === 'check') {
+        this.selectionChange.emit(this.selection.selected);
+      } else if (this.searchConfig.list.select === 'radio') {
+        this.selectedRow = data;
+        this.selectionChange.emit(data);
+      }
+    }
+  
+    /** Method to return selected objects */
+    getSelectedObjects(): any[] {
+      return this.searchConfig.list.select === 'check' ? this.selection.selected : [this.selectedRow];
+    }    
 }

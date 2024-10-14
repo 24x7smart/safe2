@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { SearchListComponent } from 'app/libraries/search-list/search-list.component';
 import { SummaryCardsComponent } from 'app/libraries/summary-cards/summary-cards.component';
+import { ProcessStepComponent } from 'app/libraries/process-step/process-step.component';
+
 import { Device } from 'app/models/device.model';
 import { DeviceService } from 'app/services/monitor/device.service';
 
@@ -14,7 +17,9 @@ export class PropApproveComponent implements OnInit {
   @ViewChild(SearchListComponent, { static: false }) searchListComponent: SearchListComponent;
   @ViewChild(SummaryCardsComponent) summaryComponent!: SummaryCardsComponent;
 
-  constructor(private deviceService: DeviceService) { }
+  constructor(private deviceService: DeviceService,
+              private router: Router
+  ) { }
 
   searchConfig = {
     "search": {
@@ -70,6 +75,8 @@ export class PropApproveComponent implements OnInit {
     {icon: 'approval_delegation', label: 'Approved', function: 'COUNT', field: '', check_field: 'step_id', check_value: 8}
   ]};
 
+  selectedRow: any = null;
+  
   ngOnInit(): void {
   }
 
@@ -102,5 +109,10 @@ export class PropApproveComponent implements OnInit {
   }
 
   onRowAction(event: { id: any, code: string }) {
+  }  
+
+  rowSelectChange(data: any) {
+    console.log('ZZZ - ', data);
+    this.selectedRow = data;
   }  
 }

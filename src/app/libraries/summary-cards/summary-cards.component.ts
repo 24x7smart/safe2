@@ -24,7 +24,6 @@ export class SummaryCardsComponent implements OnInit {
 
     this.data = data;
     this.processConfig();
-    console.log(this.results);
 
     this.cdr.detectChanges();
 
@@ -33,7 +32,6 @@ export class SummaryCardsComponent implements OnInit {
   processConfig() {
 
     this.results = this.config.cards.map((item) => {
-      console.log('Processing - ', item);
       const result = DataProcessor.processData(
         this.data,
         item.function,

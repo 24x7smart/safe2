@@ -45,6 +45,7 @@ export class PropListComponent implements OnInit {
       "id": "build_id",
       "export2excel": true,
       "add": false,
+      "select": "",
       "fields": [
         {"field": "firestation", "dtype": "string", "label": "Fire Station" , "sortable": true},
         {"field": "name", "dtype": "string", "label": "Property Name" , "sortable": true},

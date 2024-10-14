@@ -60,6 +60,23 @@
 
 <div class="list-area">
     <table mat-table [dataSource]="sortedData" class="col-md-12 mat-elevation-z8">
+
+        <!-- Selection Column (Radio or Checkbox) -->
+        <ng-container *ngIf="searchConfig.list.select !== ''" matColumnDef="select">
+            <th mat-header-cell *matHeaderCellDef>
+                <ng-container *ngIf="searchConfig.list.select === 'check'">...</ng-container>
+                <ng-container *ngIf="searchConfig.list.select === 'radio'">...</ng-container>
+            </th>
+            <td mat-cell *matCellDef="let row">
+                <ng-container *ngIf="searchConfig.list.select === 'check'">
+                    <mat-checkbox [(ngModel)]="row.selected" (change)="onSelectionChange(null)"> </mat-checkbox>
+                </ng-container>
+                <ng-container *ngIf="searchConfig.list.select === 'radio'">
+                    <mat-radio-button [value]="row" (change)="onSelectionChange(row)"> </mat-radio-button> <!-- [(ngModel)]="selectedRow"  -->
+                </ng-container>
+            </td>
+        </ng-container>
+
         <ng-container *ngFor="let field of searchConfig.list.fields" [matColumnDef]="field.field">
             <th mat-header-cell *matHeaderCellDef>
                 {{field.label}}
