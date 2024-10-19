@@ -1,0 +1,236 @@
+<div class="container" style="margin-top: 60px; max-width: none;">
+    <div class="row">
+        <div class="row col-md-12">
+            <div class="col-md-4">
+                <div class="info-item">
+                    <strong>Name:</strong> {{ device?.building?.name }}
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <div class="info-item">
+                    <strong>Occupancy:</strong> {{ device?.building?.occu }}
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="info-item">
+                    <strong>Fire Station:</strong> {{ device?.building?.firestation }}
+                </div>
+            </div>
+            <div class="col-md-3" *ngIf="device?.building?.noc">
+                <div class="info-item">
+                    <strong>NOC:</strong> {{ device?.building?.noc }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<mat-tab-group [(selectedIndex)]="selectedTabIndex" (selectedTabChange)="onTabClick($event)">
+    <mat-tab label="{{block.name}}" *ngFor="let block of device?.building?.blocks; let i = index"></mat-tab>
+</mat-tab-group>
+
+<!-- Shared Content for All Tabs -->
+<div class="shared-content">
+    <div class="row" style="height: calc(100vh - 110px);">
+        <div class="block col-md-2 bg-default" style="border-right: 3px darkgray ridge;">
+            <mat-list class="top-aligned-list">
+                <mat-list-item (click)="onZoneClick()" class="list-item">
+                    Zone Setup
+                </mat-list-item>
+                <mat-list-item (click)="onWaterClick()" class="list-item">
+                    Water System
+                </mat-list-item>
+            </mat-list>
+            <mat-list class="bottom-aligned-list">
+                <mat-list-item
+                    *ngFor="let item of device?.building?.blocks[this.selectedTabIndex]?.floors; let i = index"
+                    [ngClass]="{'selected-item': selectedItemIndex === item.floorid}"
+                    (click)="onItemClick(item.floor_id)" class="list-item">
+                    {{ item.name }}
+                </mat-list-item>
+                <hr class="custom-hr" />
+                <!--        
+            <mat-list-item *ngFor="let item of basementItems; let i = index"
+                [ngClass]="{'selected-item': selectedItemIndex === item.id}" (click)="onItemClick(item.id)" class="list-item">
+                <mat-icon [ngClass]="getIconClass(item.alert)" title="Alarm">notifications_active</mat-icon>
+                <mat-icon [ngClass]="getIconClass(item.faults)" title="Fault">warning</mat-icon>
+                <mat-icon [ngClass]="getIconClass(item.sprinkler)" title="Sprinkler" style="margin-right: 20px;">shower</mat-icon>
+                {{ item.name }}
+            </mat-list-item>
+    -->
+            </mat-list>
+        </div>
+        <div class="block col-md-9" *ngIf="itemTypeClicked === 'F'">
+            <div class="row" *ngIf="selectedItemIndex > 0" style="margin-top: 10px;">
+                <div class="col-md-3">
+                    <div class="info-item">
+                        <strong>Floor:</strong> {{ getFloorById(selectedItemIndex)?.name }}
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="info-item">
+                        <strong>Type:</strong> {{ getFloorById(selectedItemIndex)?.ftype }}
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="info-item">
+                        <strong>Occupancy:</strong> {{ getFloorById(selectedItemIndex)?.occu }}
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="info-item">
+                        <strong>Built Area:</strong> {{ getFloorById(selectedItemIndex)?.built_area }} Sq M
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="info-item">
+                        <strong>Occu. Load:</strong> {{ getFloorById(selectedItemIndex)?.occu_load }}
+                    </div>
+                </div>
+                <hr />
+            </div>
+            <div class="row" *ngIf="selectedItemIndex > 0" style="margin-top: 5px;">
+                <img [src]="imageUrl" alt="Floor Plan" class="building-image" width="100%">
+            </div>
+        </div>
+
+        <div class="block col-md-9" *ngIf="itemTypeClicked === 'W'">
+
+            <div class="row">
+                <h4 class="col-md-12"><b>Water Tanks</b></h4>
+                <div class="tank-container" *ngFor="let tank of device?.tanks; let i = index" (click)="tankClick(i)">
+                    <div class="tank-top">{{ picklistService.getPicklistValue("tank_type",tank.tank_type) | async }}</div>
+                    <div class="outer-div">
+                        <div>
+                            <div class="tank-capacity">{{tank.capacity}}L</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tank-container" (click)="tankClick(-1)">
+                    <div class="tank-top">&nbsp;</div>
+                    <div class="pump-div">
+                        <mat-icon title="Add" style="width: 100%; height:100%; font-size: 50px;">
+                            add
+                        </mat-icon>
+                    </div>
+                    <div class="tank-top">&nbsp;</div>
+                </div>
+            </div>
+            <div class="row">
+                <h4 class="col-md-12"><b>Motors</b></h4>
+                <div class="tank-container" *ngFor="let motor of device?.motors" (click)="motorClick(motor)">
+                    <div class="tank-top">{{picklistService.getLookupValue(device?.building?.blocks[this.selectedTabIndex]?.floors, 'floor_id', motor.floor_id, 'name')}}</div>
+                    <div class="pump-div">
+                        <mat-icon title="Alarm" style="width: 100%; height:100%; font-size: 50px;"
+                            class="pump-inactive">
+                            cyclone
+                        </mat-icon>
+                    </div>
+                    <div class="tank-top">{{ picklistService.getPicklistValue("motor_type",motor.motor_type) | async }}</div>
+                </div>
+                <div class="tank-container" (click)="motorClick(undefined)">
+                    <div class="tank-top">&nbsp;</div>
+                    <div class="pump-div">
+                        <mat-icon title="Add" style="width: 100%; height:100%; font-size: 50px;">
+                            add
+                        </mat-icon>
+                    </div>
+                    <div class="tank-top">&nbsp;</div>
+                </div>                
+            </div>
+            <div class="row">
+                <h4 class="col-md-12"><b>Water Lines</b></h4>
+                <div class="tank-container" *ngFor="let line of device?.wlines" (click)="wlineClick(line)">
+                    <div class="tank-top">{{line.line_name}}</div>
+                    <div class="pump-div">
+                        <mat-icon title="Alarm" style="width: 100%; height:100%; font-size: 50px;"
+                            [ngClass]="{'waving-icon': line.flowing, 'pump-active': line.pressure >= line.threshold, 'pump-inactive': line.pressure < line.threshold}">
+                            water
+                        </mat-icon>
+                    </div>
+                    <div class="tank-top">{{line.min_press}} bar</div>
+                </div>
+                <div class="tank-container" (click)="wlineClick(undefined)">
+                    <div class="tank-top">&nbsp;</div>
+                    <div class="pump-div">
+                        <mat-icon title="Add" style="width: 100%; height:100%; font-size: 50px;">
+                            add
+                        </mat-icon>
+                    </div>
+                    <div class="tank-top">&nbsp;</div>
+                </div>                
+            </div>
+
+        </div>
+
+        <div class="block col-md-9" *ngIf="itemTypeClicked === 'Z'">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="info-item">
+                        <strong>Block:</strong> {{ device?.building?.blocks[selectedTabIndex]?.name }}
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="info-item">
+                        <strong>Occupancy:</strong> {{ device?.building?.blocks[selectedTabIndex]?.occu }}
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="info-item">
+                        <strong>Height:</strong> {{ device?.building?.blocks[selectedTabIndex]?.height }} m
+                    </div>
+                </div>
+            </div>
+            ZONE SYSTEM
+        </div>
+    </div>
+</div>
+
+<ng-template #dialogEditTank>
+    <h2 mat-dialog-title>{{editTank.tank_id > 0 ? "Edit": "Add"}} Tank</h2>
+    <mat-dialog-content>
+        <form [formGroup]="tankForm" (ngSubmit)="onTankSubmit()">
+            <mat-form-field appearance="outline">
+                <mat-label>Tank Type</mat-label>
+                <mat-select id="tank_type" formControlName="tank_type" placeholder="Select Tank Type" required>
+                  <mat-option value="U">Underground</mat-option>
+                  <mat-option value="T">Overhead</mat-option>
+                </mat-select>
+                <mat-error *ngIf="tankForm.get('tank_type')?.invalid && tankForm.get('tank_type')?.touched">
+                  Tank Type is required
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Capacity</mat-label>
+                <input matInput id="capacity" formControlName="capacity" placeholder="Enter Capacity" type="number" required/>
+                <mat-error *ngIf="tankForm.get('capacity')?.invalid && tankForm.get('capacity')?.touched">
+                    Capacity is required
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Height</mat-label>
+                <input matInput id="height" formControlName="height" placeholder="Enter Height" type="number" required/>
+                <mat-error *ngIf="tankForm.get('height')?.invalid && tankForm.get('height')?.touched">
+                    Height is required
+                </mat-error>
+            </mat-form-field>
+        </form>
+    </mat-dialog-content>
+
+    <!-- Buttons inside the dialog -->
+    <mat-dialog-actions align="end">
+        <button mat-raised-button color="danger" (click)="onClose()">Delete</button>
+        <button mat-button (click)="onClose()">Close</button>
+        <button mat-raised-button color="primary" (click)="onTankSubmit()">Save</button>
+    </mat-dialog-actions>
+</ng-template>

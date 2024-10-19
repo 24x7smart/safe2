@@ -55,7 +55,7 @@ export class PropListComponent implements OnInit {
       ],
       "actions": [
         {"code": "view", "icon": "visibility", "label": "View", "cfield": ""},
-        {"code": "view", "icon": "cast", "label": "Device Info", "cfield": "noc", "cvalue": "", "condition": "!=="}
+        {"code": "device", "icon": "cast", "label": "Device Info", "cfield": "noc", "cvalue": "", "condition": "!=="}
       ]
     }
   };
@@ -112,7 +112,11 @@ export class PropListComponent implements OnInit {
 
   onRowAction(event: { id: any, code: string }) {
     if ( event.code === "view") {
-      const url = '#/properties/property';// + id;  // URL to open
+      const url = '#properties/edit/' + event.id;  // URL to open
+      window.open(url, '_blank');  // Opens in a new tab
+    }
+    if ( event.code === "device") {
+      const url = '#properties/device/' + event.id;  // URL to open
       window.open(url, '_blank');  // Opens in a new tab
     }
   }

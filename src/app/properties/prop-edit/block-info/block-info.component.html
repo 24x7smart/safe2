@@ -1,0 +1,35 @@
+<div class="block-edit mat-elevation-z8">
+    <h2 *ngIf="blockId === 0">{{ isEditMode ? 'Edit Block' : 'Add New Block' }}</h2>
+
+    <form [formGroup]="blockForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline">
+            <mat-label>Block Name</mat-label>
+            <input matInput id="name" formControlName="name" placeholder="Enter block name" />
+            <mat-error *ngIf="blockForm.get('name')?.invalid && blockForm.get('name')?.touched">
+                Name is required
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Height</mat-label>
+            <input matInput id="height" formControlName="height" placeholder="Enter block height" />
+            <mat-error *ngIf="blockForm.get('height')?.invalid && blockForm.get('height')?.touched">
+                Height is required
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Occupancy</mat-label>
+            <input matInput id="occu" formControlName="occu" placeholder="Enter occupancy details" />
+            <mat-error *ngIf="blockForm.get('occu')?.invalid && blockForm.get('occu')?.touched">
+                Occupancy is required
+            </mat-error>
+        </mat-form-field>
+
+        <div class="form-actions" *ngIf="blockId === 0">
+            <button mat-raised-button color="primary" type="submit" [disabled]="blockForm.invalid">
+                {{ isEditMode ? 'Update' : 'Add' }}
+            </button>
+        </div>
+    </form>
+</div>

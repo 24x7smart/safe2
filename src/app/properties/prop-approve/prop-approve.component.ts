@@ -6,6 +6,7 @@ import { ProcessStepComponent } from 'app/libraries/process-step/process-step.co
 
 import { Device } from 'app/models/device.model';
 import { DeviceService } from 'app/services/monitor/device.service';
+import { ApproveStepComponent } from './approve-step/approve-step.component';
 
 @Component({
   selector: 'app-prop-approve',
@@ -16,6 +17,7 @@ export class PropApproveComponent implements OnInit {
   listData = [];  
   @ViewChild(SearchListComponent, { static: false }) searchListComponent: SearchListComponent;
   @ViewChild(SummaryCardsComponent) summaryComponent!: SummaryCardsComponent;
+  @ViewChild(ApproveStepComponent) processComponent!: ApproveStepComponent;
 
   constructor(private deviceService: DeviceService,
               private router: Router
@@ -114,5 +116,6 @@ export class PropApproveComponent implements OnInit {
   rowSelectChange(data: any) {
     console.log('ZZZ - ', data);
     this.selectedRow = data;
+    this.processComponent.setContent(this.selectedRow.step_id);
   }  
 }

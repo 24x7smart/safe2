@@ -1,7 +1,7 @@
 // models.ts
 
 export interface Contact {
-    id: number;
+    contact_id: number;
     name: string;
     role: string;
     phone1: string;
@@ -10,7 +10,7 @@ export interface Contact {
   }
   
   export interface Block {
-    id: number;
+    block_id: number;
     name: string;
     height: number;
     occu: string;
@@ -18,8 +18,9 @@ export interface Contact {
   }
   
   export interface Floor {
-    id: number;
+    floor_id: number;
     name: string;
+    ftype: string;
     built_area: number;
     seq: number;
     occu: string;
@@ -27,7 +28,7 @@ export interface Contact {
   }
   
   export interface Building {
-    id: number;
+    build_id: number;
     name: string;
     lat: number;
     lng: number;

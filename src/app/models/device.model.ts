@@ -12,6 +12,10 @@ export interface Device {
     device_fault: boolean;
     water_fault: boolean;
     building?: Building; // Optional, as it might be populated from the API
+    zones: Zone[],
+    tanks: Tank[],
+    motors: Motor[],
+    wlines: Waterline[]
 }
 
 // src/app/models/motor.model.ts
@@ -19,6 +23,7 @@ export interface Motor {
     motor_id: number;
     block_id: number; // Assuming block_id is the foreign key
     motor_type: string;
+    floor_id: number;
     loc: string;
     descr: string;
     status: string;
@@ -29,10 +34,11 @@ export interface Zone {
     zone_id: number;
     code: string;
     name: string;
+    detectors: Detector[]
 }
 
 // src/app/models/water-line.model.ts
-export interface WaterLine {
+export interface Waterline {
     wline_id: number;
     block_id: number; // Assuming block_id is the foreign key
     motor_id: number; // Assuming motor_id is the foreign key
@@ -43,7 +49,7 @@ export interface WaterLine {
 // src/app/models/tank.model.ts
 export interface Tank {
     tank_id: number;
-    block_id: number; // Assuming block_id is the foreign key
+    device_id: number; // Assuming block_id is the foreign key
     tank_type: string;
     loc: string;
     capacity: number;

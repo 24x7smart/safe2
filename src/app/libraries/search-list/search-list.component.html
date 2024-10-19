@@ -90,7 +90,7 @@
             <td mat-cell *matCellDef="let row" style="width: 10%;">
                 <ng-container *ngFor="let action of searchConfig.list.actions">
                     <button mat-icon-button
-                            (click)="onRowAction(row.aid, action.code)" title="{{action.label}}"
+                            (click)="onRowAction(row.build_id, action.code)" title="{{action.label}}"
                             *ngIf="action.cfield === '' || evaluateCondition(row[action.cfield], action.condition, action.cvalue)">
                         <mat-icon>{{ action.icon }}</mat-icon>
                     </button>

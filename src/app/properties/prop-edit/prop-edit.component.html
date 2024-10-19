@@ -1,0 +1,199 @@
+<div class="container" style="margin-top: 60px; max-width: none;">
+    <div class="row">
+        <div class="row col-md-8">
+            <div class="col-md-6">
+                <div class="info-item">
+                    <strong>Name:</strong> {{ property?.name }}
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="info-item">
+                    <strong>Occupancy:</strong> {{ property?.occu }}
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="info-item">
+                    <strong>Fire Station:</strong> {{ property?.firestation }}
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="info-item">
+                    <strong>Address:</strong> {{ property?.address }}
+                </div>
+            </div>
+            <div class="col-md-3" *ngIf="property?.noc">
+                <div class="info-item">
+                    <strong>NOC:</strong> {{ property?.noc }}
+                </div>
+            </div>
+            <div class="col-md-9 text-right">
+                <a href="#" (click)="editBuilding()">Edit..</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="mat-elevation-z8">
+                <table mat-table [dataSource]="property?.contacts" class="mat-table col-md-12" matSort>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                        <td mat-cell *matCellDef="let contact"> {{contact.name}} </td>
+                    </ng-container>
+
+                    <!-- Role Column -->
+                    <ng-container matColumnDef="role">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Role </th>
+                        <td mat-cell *matCellDef="let contact"> {{contact.role}} </td>
+                    </ng-container>
+
+                    <!-- Phone 1 Column -->
+                    <ng-container matColumnDef="phone1">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Phone 1</th>
+                        <td mat-cell *matCellDef="let contact"> {{contact.phone1}} </td>
+                    </ng-container>
+
+                    <!-- Phone 2 Column -->
+                    <ng-container matColumnDef="phone2">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Phone 2 </th>
+                        <td mat-cell *matCellDef="let contact"> {{contact.phone2}} </td>
+                    </ng-container>
+
+                    <!-- Email Column -->
+                    <ng-container matColumnDef="email">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+                        <td mat-cell *matCellDef="let contact"> {{contact.email}} </td>
+                    </ng-container>
+
+                    <!-- Edit Column (Button) -->
+                    <ng-container matColumnDef="edit">
+                        <th mat-header-cell *matHeaderCellDef> Actions </th>
+                        <td mat-cell *matCellDef="let contact">
+                            <mat-icon title="Edit" (click)="editContact(contact.contact_id)">edit</mat-icon>
+                        </td>
+                    </ng-container>
+
+                    <!-- Header and Row Declarations -->
+                    <!-- tr mat-header-row *matHeaderRowDef="contactColumns"></tr -->
+                    <tr mat-row *matRowDef="let row; columns: contactColumns;"></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<mat-tab-group [(selectedIndex)]="selectedTabIndex" (selectedTabChange)="onTabClick($event)">
+    <mat-tab label="+ add block"></mat-tab>
+    <mat-tab label="{{block.name}}" *ngFor="let block of property?.blocks; let i = index"></mat-tab>
+</mat-tab-group>
+
+<!-- Shared Content for All Tabs -->
+<div *ngIf="selectedTabIndex > 0" class="shared-content">
+    <div class="row" style="height: calc(100vh - 110px);">
+        <div class="block col-md-2 bg-default" style="border-right: 3px darkgray ridge;">
+            <mat-list class="bottom-aligned-list">
+                <mat-list-item (click)="onItemNewClick()" class="list-item">
+                    + add floor
+                </mat-list-item>
+                <hr class="custom-hr" />
+                <mat-list-item *ngFor="let item of property?.blocks[this.selectedTabIndex - 1]?.floors; let i = index"
+                    [ngClass]="{'selected-item': selectedItemIndex === item.floorid}"
+                    (click)="onItemClick(item.floor_id)" class="list-item">
+                    {{ item.name }}
+                </mat-list-item>
+                <hr class="custom-hr" />
+                <!--        
+            <mat-list-item *ngFor="let item of basementItems; let i = index"
+                [ngClass]="{'selected-item': selectedItemIndex === item.id}" (click)="onItemClick(item.id)" class="list-item">
+                <mat-icon [ngClass]="getIconClass(item.alert)" title="Alarm">notifications_active</mat-icon>
+                <mat-icon [ngClass]="getIconClass(item.faults)" title="Fault">warning</mat-icon>
+                <mat-icon [ngClass]="getIconClass(item.sprinkler)" title="Sprinkler" style="margin-right: 20px;">shower</mat-icon>
+                {{ item.name }}
+            </mat-list-item>
+    -->
+            </mat-list>
+        </div>
+        <div class="block col-md-9">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="info-item">
+                        <strong>Block:</strong> {{ property?.blocks[selectedTabIndex - 1]?.name }}
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="info-item">
+                        <strong>Occupancy:</strong> {{ property?.blocks[selectedTabIndex - 1]?.occu }}
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="info-item">
+                        <strong>Height:</strong> {{ property?.blocks[selectedTabIndex - 1]?.height }} m
+                    </div>
+                </div>
+
+                <div class="col-md-2 text-right">
+                    <a href="#" (click)="editBlock()">Edit..</a>
+                </div>
+                <hr/>                
+            </div>
+            <div class="row" *ngIf="selectedItemIndex > 0" style="margin-top: 10px;">
+                <div class="col-md-3">
+                    <div class="info-item">
+                        <strong>Floor:</strong> {{ getFloorById(selectedItemIndex)?.name }}
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="info-item">
+                        <strong>Type:</strong> {{ getFloorById(selectedItemIndex)?.ftype }}
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="info-item">
+                        <strong>Occupancy:</strong> {{ getFloorById(selectedItemIndex)?.occu }}
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="info-item">
+                        <strong>Built Area:</strong> {{ getFloorById(selectedItemIndex)?.built_area }} Sq M
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="info-item">
+                        <strong>Occu. Load:</strong> {{ getFloorById(selectedItemIndex)?.occu_load }}
+                    </div>
+                </div>
+
+                <div class="col-md-9 text-right">
+                    <a href="#" (click)="editBuilding()">Edit..</a>
+                </div>
+                <hr/>                
+            </div>
+            <div class="row" *ngIf="selectedItemIndex > 0" style="margin-top: 5px;">
+                <img [src]="imageUrl" alt="Floor Plan" class="building-image" width="100%">
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #dialogEditBlock>
+    <h2 mat-dialog-title>Add Block</h2>
+    <mat-dialog-content>
+        <app-block-info #blockInfo></app-block-info>
+        <!-- Add form elements or other data binding content here -->
+    </mat-dialog-content>
+
+    <!-- Buttons inside the dialog -->
+    <mat-dialog-actions align="end">
+        <button mat-button (click)="onClose()">Close</button>
+        <button mat-raised-button color="primary" (click)="onSave()">Save</button>
+    </mat-dialog-actions>
+</ng-template>

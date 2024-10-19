@@ -1,0 +1,221 @@
+/* Container for the tabs */
+mat-tab-group {
+    display: block;
+  }
+  
+  /* Style for each individual tab (the tab leaf) */
+  .mat-tab-label {
+    background-color: #f5f5f5; /* Background for each tab */
+    border: 1px solid #ccc; /* Border for each tab */
+    border-radius: 8px 8px 0 0; /* Rounded top corners */
+    margin-right: 4px; /* Space between tabs */
+    padding: 8px 16px; /* Padding inside each tab */
+    text-transform: none; /* Disable uppercase text transform */
+  }
+  
+  /* Remove the last tab's right margin */
+  .mat-tab-label:last-of-type {
+    margin-right: 0;
+  }
+  
+  /* Active tab styling */
+  .mat-tab-label-active {
+    background-color: #e0e0e0; /* Different background for the active tab */
+    border-bottom: none; /* Remove bottom border so it connects with the content */
+    border-radius: 8px 8px 0 0; /* Keep rounded corners for the active tab */
+  }
+  
+  /* Style the tab content with border and rounded corners */
+  .mat-tab-body-wrapper {
+    border: 1px solid #ccc;
+    border-top: none; /* Avoid double border between active tab and content */
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    padding: 16px;
+  }
+  
+  /* Style for each list item */
+.list-item {
+  padding: 10px 20px;
+  border: 1px solid #ccc; /* Add border to each item */
+  background-color: #f9f9f9; /* Background color for each item */
+  margin-bottom: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+/* Hover effect for list items */
+.list-item:hover {
+  background-color: #e0e0e0; /* Change background on hover */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Add shadow on hover */
+}
+/* Style for the selected item */
+.selected-item {
+  background-color: #d0e8ff !important; /* Highlighted background for selected item */
+  border-color: #1976d2; /* Border color for selected item */
+  color: #1976d2; /* Text color for selected item */
+}
+/* Style for mat-list to position it at the bottom */
+.bottom-aligned-list {
+  position: absolute;
+  bottom: 0; /* Align the list to the bottom of the container */
+  width: 90%; /* Make the list take up the full width of the container */
+  margin-left: 5px; 
+  margin-bottom: 0px;/* Remove any default margins */
+}
+
+.top-aligned-list {
+  width: 90%; /* Make the list take up the full width of the container */
+  margin-left: 5px; 
+  margin-top: 0px;/* Remove any default margins */
+  margin-bottom: 30px;
+}
+
+.custom-hr {
+  border: 0; /* Remove default border */
+  border-top: 5px solid darkgray; /* Set thickness and color */
+}
+
+.info-item {
+  padding: 0px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  margin-bottom: 5px;
+  border-radius: 4px;
+}
+
+/*---*/
+/* Tank container to hold both the tank body and the dome */
+.tank-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+  margin-left: 10px
+}
+
+/* The rounded top (dome) of the tank */
+.tank-top {
+  width: 100px;
+  height: 20px;
+  background-color: gray;
+  border-radius: 0% 0% 0 0;
+  color: black;
+  text-align: center;
+}
+
+/* Main tank body */
+.outer-div {
+  height: 70px;
+  width: 100px;
+  background-color: lightgray;
+  border: 2px solid black;
+  position: relative;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+}
+
+/* Filling part inside the tank */
+.fill-70 {
+  width: 100%;
+  background-color: blue;
+  position: absolute;
+  bottom: 0;
+  transition: height 0.3s ease;
+}
+
+/* Tank text styling */
+.tank-text {
+  position: absolute;
+  bottom: 5px; /* Adjust as needed */
+  width: 100%;
+  text-align: center;
+  color: white; /* Text color to contrast the fill */
+  font-weight: bold;
+  z-index: 1;
+  pointer-events: none; /* Text shouldn't affect interactions */
+}
+
+/* Underground text styling */
+.tank-label {
+  font-size: 12px;
+}
+
+/* Capacity text styling */
+.tank-capacity {
+  font-size: 14px;
+}
+
+.pump-div {
+  height: 50px;
+  width: 100px;
+  background-color: lightgray;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.pump-bottom {
+  width: 100px;
+  height: 20px;
+  background-color: gray;
+  border-radius: 0% 0% 0 0;
+  color: black;
+  text-align: center;
+  font-size: 10px;
+}
+
+.pump-active {
+  color: orange;
+}
+
+.pump-inactive {
+  color: darkred;
+}
+
+/* Rotating icon animation */
+.rotating-icon {
+  animation: rotate 2s linear infinite; /* Adjust duration as needed */
+}
+
+/* Keyframes for rotation animation */
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Moving icon animation */
+.moving-icon {
+  animation: move-up-down 1s ease-in-out infinite; /* Adjust duration and easing as needed */
+}
+
+/* Keyframes for up and down movement */
+@keyframes move-up-down {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Waving icon animation */
+.waving-icon {
+  animation: wave 1.5s ease-in-out infinite; /* Adjust duration and easing as needed */
+}
+
+/* Keyframes for waving effect */
+@keyframes wave {
+  0%, 100% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(25px);
+  }
+}
